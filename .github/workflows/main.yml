@@ -1,0 +1,19 @@
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/d3fau4/nx-dev:nightly
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Build app
+      run: |
+        mkdir build
+        cmake -G "Unix Makefiles" --toolchain=DevkitA64Libnx.cmake -S . -B build
+        cmake --build build
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v3.1.1
+      with:
+        name: build
+        path: build/Mara_nx.nro
