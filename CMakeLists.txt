@@ -60,6 +60,7 @@ set_target_properties(Mara_nx PROPERTIES
         APP_AUTHOR "TraduSquare"
         APP_VERSION "0.1.0"
         ROMFS "${CMAKE_CURRENT_LIST_DIR}/resources"
+        ICON "${CMAKE_CURRENT_LIST_DIR}/resources/icon/borealis.jpg"
         )
 
 

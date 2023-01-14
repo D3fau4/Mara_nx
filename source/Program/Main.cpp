@@ -34,8 +34,8 @@ int main(int argc, char* argv[])
     brls::Application::pushView(pMainActivity->GetView());
 
     if(!pMainActivity->found){
-        brls::Logger::error("Juego no encontrado");
-        brls::Application::crash("main/error/gamenotfound"_i18n);
+        /*brls::Logger::error("Juego no encontrado.");
+        brls::Application::crash("main/error/gamenotfound"_i18n);*/
     }
 
     while (brls::Application::mainLoop())

@@ -7,6 +7,7 @@ namespace Mara::ui
     {
         brls::TabFrame* rootFrame = new brls::TabFrame();
         rootFrame->setTitle("main/title"_i18n);
+        rootFrame->setIcon(BOREALIS_ASSET("icon/borealis.jpg"));
 
         brls::List *mainlist = new brls::List();
         this->found = false;
@@ -16,10 +17,18 @@ namespace Mara::ui
                 brls::Logger::info("Juego encontrado");
                 this->found  = true;
             }
-            /*brls::ListItem *titleItem = new Mara::ui::ProgramidListItem(title.second->GetTitleID(), title.second->GetTitleName(),title.second->GetTitleAuthor());
-            mainlist->addView(titleItem);*/
         }
 
+        brls::Image* a = new brls::Image(BOREALIS_ASSET("img/transcene_logo.png"));
+        a->setHeight(150);
+        mainlist->addView(a);
+
+        brls::Label* patchdescription = new brls::Label(
+                brls::LabelStyle::DESCRIPTION,
+                "TEXTO TEXTO 1TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO TEXTO ",
+                true);
+        patchdescription->setHorizontalAlign(NVG_ALIGN_CENTER);
+        mainlist->addView(patchdescription);
         rootFrame->addTab("main/maintab"_i18n, mainlist);
         view = rootFrame;
     }
