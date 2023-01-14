@@ -1,5 +1,8 @@
 {
-    "title": "Mara",
-    "maintab": "inicio"
+    "title": ".hack//G.U. Last Recode Patcher",
+    "maintab": "inicio",
+    "error": {
+        "gamenotfound": "Juego no encontrado."
+    }
 }
 

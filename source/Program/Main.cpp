@@ -30,8 +30,13 @@ int main(int argc, char* argv[])
 
     // Establece que se pueda salir de la app
     brls::Application::setGlobalQuit(true);
-    auto win = new Mara::ui::MainActivity();
-    brls::Application::pushView(win->GetView());
+    auto pMainActivity = new Mara::ui::MainActivity();
+    brls::Application::pushView(pMainActivity->GetView());
+
+    if(!pMainActivity->found){
+        brls::Logger::error("Juego no encontrado");
+        brls::Application::crash("main/error/gamenotfound"_i18n);
+    }
 
     while (brls::Application::mainLoop())
     {

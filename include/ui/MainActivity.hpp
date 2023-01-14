@@ -15,5 +15,6 @@ namespace Mara::ui
         MainActivity();
 
         brls::View* GetView();
+        bool found;
     };
 }

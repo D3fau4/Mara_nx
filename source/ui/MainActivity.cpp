@@ -1,5 +1,4 @@
 ﻿#include "ui/MainActivity.hpp"
-
 #include "ns/ns.hpp"
 
 namespace Mara::ui
@@ -10,12 +9,17 @@ namespace Mara::ui
         rootFrame->setTitle("main/title"_i18n);
 
         brls::List *mainlist = new brls::List();
+        this->found = false;
         for (auto &title : Mara::ns::getAllTitles())
         {
-            brls::Logger::info("juego añadido");
-            brls::ListItem *titleItem = new Mara::ui::ProgramidListItem(title.second->GetTitleID(), title.second->GetTitleName(),title.second->GetTitleAuthor());
-            mainlist->addView(titleItem);
+            if(title.second->GetTitleID() == GAME_PID) {
+                brls::Logger::info("Juego encontrado");
+                this->found  = true;
+            }
+            /*brls::ListItem *titleItem = new Mara::ui::ProgramidListItem(title.second->GetTitleID(), title.second->GetTitleName(),title.second->GetTitleAuthor());
+            mainlist->addView(titleItem);*/
         }
+
         rootFrame->addTab("main/maintab"_i18n, mainlist);
         view = rootFrame;
     }
