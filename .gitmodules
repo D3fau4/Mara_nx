@@ -1,0 +1,3 @@
+[submodule "Libs/xdelta3-nx"]
+	path = Libs/xdelta3-nx
+	url = https://github.com/D3fau4/xdelta3-nx.git
