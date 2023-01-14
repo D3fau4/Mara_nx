@@ -6,7 +6,9 @@ jobs:
       image: ghcr.io/d3fau4/nx-dev:nightly
     steps:
     - uses: actions/checkout@v3
-    
+    - name: Checkout submodules
+      uses: textbook/git-checkout-submodule-action@2.1.1
+
     - name: Build app
       run: |
         mkdir build
