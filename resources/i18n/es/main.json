@@ -1,8 +1,17 @@
 {
     "title": ".hack//G.U. Last Recode Patcher",
-    "maintab": "inicio",
+    "creditstab": "Créditos",
     "error": {
         "gamenotfound": "Juego no encontrado."
+    },
+    "translation": {
+        "title": "Versión del parche: v1.0.0",
+        "subtitle": "",
+        "translatedby": "Traducido por",
+        "romhackingtitle": "Romhacking:",
+        "translatortitle": "Traducción:",
+        "correctiontitle": "Corrección:",
+        "graphicstitle": "Edición gráfica:"
     }
 }
 
