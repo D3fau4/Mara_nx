@@ -6,5 +6,9 @@
   },
   "stage2" : {
     "title": "Parcheando..."
+  },
+  "stage3" : {
+    "title": "¡Enhorabuena! Tu juego ya se ha parcheado. Ahora puedes cerrar el programa y disfrutar del juego.",
+    "button": "Cerrar"
   }
 }

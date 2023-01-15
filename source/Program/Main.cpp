@@ -12,11 +12,13 @@
 void initServices(){
     nsInitialize();
     pmdmntInitialize();
+    apmInitialize();
 }
 
 void shutdownServices(){
     nsExit();
     pmdmntExit();
+    apmExit();
 }
 
 // Main program entrypoint

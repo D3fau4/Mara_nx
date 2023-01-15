@@ -25,6 +25,11 @@ namespace Mara::ui {
                     break;
                 }
             }
+
+            rc = appletSetCpuBoostMode(ApmCpuBoostMode_FastLoad);
+            if(R_SUCCEEDED(rc)){
+                brls::Logger::info("Activado Overclock");
+            }
         } else {
             brls::Logger::error("No se pudo montar el romfs del juego");
         }
@@ -37,7 +42,8 @@ namespace Mara::ui {
 
     void InstallerProgessPage::draw(NVGcontext *vg, int x, int y, unsigned int width, unsigned int height,
                                     brls::Style *style, brls::FrameContext *ctx) {
-        if (progressValue >= std::size(patches)){
+        if (progressValue == std::size(patches)){
+            appletSetCpuBoostMode(ApmCpuBoostMode_Normal);
             if (frame->isLastStage())
                 brls::Application::popView();
             else
@@ -83,7 +89,6 @@ namespace Mara::ui {
     }
 
     void InstallerProgessPage::asyncPatch(int i) {
-        std::this_thread::sleep_for(std::chrono::seconds(3));
         char path[255];
         sprintf(path, "%s:/%s", mountnamegame.c_str(), ori_files[i].c_str());
         std::string orifile = path;
@@ -95,6 +100,8 @@ namespace Mara::ui {
         brls::Logger::debug(orifile);
         brls::Logger::debug(patchfile);
         brls::Logger::debug(outfile);
+
+        if(Mara::fs::DeleteFile(outfile));
 
         std::size_t last_slash_pos = outfile.find_last_of("/");
         std::string folder = outfile.substr(0, last_slash_pos);
