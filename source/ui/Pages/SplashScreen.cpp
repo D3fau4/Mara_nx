@@ -1,14 +1,42 @@
 #include "ui/Pages/SplashScreen.hpp"
 #include "ui/Pages/MainActivity.hpp"
+#include "ui/Pages/InstallerPage.hpp"
 
 namespace Mara::ui {
-    SplashScreen::SplashScreen() {
-        m_logo = new brls::Image(BOREALIS_ASSET("img/tradusquare_logo.png"));
+    SplashScreen::SplashScreen(SplashMode splashMode) {
+        this->splashMode = splashMode;
+        switch (splashMode) {
+            case SplashMode::SplashMode_Applet:
+            default:
+                m_logo = new brls::Image(BOREALIS_ASSET("img/tradusquare_logo.png"));
+                break;
+            case SplashMode::SplashMode_App:
+                m_logo = new brls::Image(BOREALIS_ASSET("img/tradusquare_logo.png"));
+                break;
+        }
         m_logo->setParent(this);
     }
 
     SplashScreen::~SplashScreen() {
         delete m_logo;
+    }
+
+    void StartInstaller(){
+        brls::StagedAppletFrame* stagedFrame = new brls::StagedAppletFrame();
+        stagedFrame->setTitle("installer/title"_i18n);
+        stagedFrame->addStage(new InstallerPage(stagedFrame, "installer/stage1/button"_i18n));
+        brls::Application::pushView(stagedFrame);
+    }
+
+    void StartApp(){
+        // Start Main Activity
+        auto pMainActivity = new Mara::ui::MainActivity();
+        if(!pMainActivity->found){
+            brls::Logger::error("Juego no encontrado.");
+            brls::Application::crash("main/error/gamenotfound"_i18n);
+            return;
+        }
+        brls::Application::pushView(pMainActivity->GetView(), brls::ViewAnimation::FADE);
     }
 
     void SplashScreen::draw(NVGcontext *vg, int x, int y, unsigned int width, unsigned int height, brls::Style *style,
@@ -20,14 +48,15 @@ namespace Mara::ui {
         }
 
         if(miliseconds == 150) {
-            // Start Main Activity
-            auto pMainActivity = new Mara::ui::MainActivity();
-            if(!pMainActivity->found){
-                brls::Logger::error("Juego no encontrado.");
-                brls::Application::crash("main/error/gamenotfound"_i18n);
-                return;
+            switch(this->splashMode){
+                case SplashMode::SplashMode_App:
+                    StartInstaller();
+                    break;
+                case SplashMode::SplashMode_Applet:
+                default:
+                    StartApp();
+                    break;
             }
-            brls::Application::pushView(pMainActivity->GetView(), brls::ViewAnimation::FADE);
         }
 
         nvgFillColor(vg, color);

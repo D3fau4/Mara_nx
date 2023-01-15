@@ -36,6 +36,8 @@ int main(int argc, char* argv[])
         return EXIT_FAILURE;
     }
 
+    brls::View* splash;
+
     if(Mara::pm::isInApplicationMode()) {
 
         // Borrar lanzador
@@ -47,14 +49,15 @@ int main(int argc, char* argv[])
                 Mara::fs::DeleteFile(path);
             }
         }
-
+        // Establece que no se pueda salir de la app
+        brls::Application::setGlobalQuit(false);
         // Nuevo splash screen
-        
+        splash = new Mara::ui::SplashScreen(Mara::ui::SplashMode_App);
+    } else {
+        brls::Application::setGlobalQuit(true);
+        splash = new Mara::ui::SplashScreen(Mara::ui::SplashMode_Applet);
     }
 
-    // Establece que se pueda salir de la app
-    brls::Application::setGlobalQuit(true);
-    auto splash = new Mara::ui::SplashScreen();
     brls::Application::pushView(splash);
 
     while (brls::Application::mainLoop())
