@@ -19,6 +19,7 @@ namespace Mara::ui
         }
 
         rootFrame->addTab("main/creditstab"_i18n, (new AboutTab())->GetTab());
+        rootFrame->addTab("main/installer/title"_i18n, (new InstallerTab())->GetTab());
         view = rootFrame;
     }
 

@@ -1,7 +1,3 @@
-//
-// Created by raul2 on 15/01/2023.
-//
-
 #include "ui/Tabs/AboutTab.hpp"
 
 namespace Mara::ui {

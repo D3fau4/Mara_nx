@@ -12,6 +12,16 @@
         "translatortitle": "Traducción:",
         "correctiontitle": "Corrección:",
         "graphicstitle": "Edición gráfica:"
+    },
+    "installer": {
+        "title": "Instalar",
+        "appletinstallwarning": {
+            "btntitle": "Instalar el parcheador",
+            "btnsubtitle": "Instala el parcheador",
+            "message": "Se va a proceder a instalar el parcheador.",
+            "yes": "Continuar",
+            "no": "Cancelar"
+        }
     }
 }
 

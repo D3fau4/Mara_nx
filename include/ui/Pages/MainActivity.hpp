@@ -5,6 +5,7 @@
 #include "Program/Main.hpp"
 #include "ui/elements/ProgramidListItem.hpp"
 #include "ui/Tabs/AboutTab.hpp"
+#include "ui/Tabs/InstallerTab.hpp"
 
 namespace Mara::ui
 {
