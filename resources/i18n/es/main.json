@@ -14,7 +14,7 @@
         "graphicstitle": "Edición gráfica:"
     },
     "installer": {
-        "title": "Instalar",
+        "title": "Instalador",
         "appletinstallwarning": {
             "btntitle": "Instalar el parcheador",
             "btnsubtitle": "Instala el parcheador",
