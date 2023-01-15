@@ -25,7 +25,7 @@ namespace Mara::ui {
                     }
                     std::string nspgame = "exefs.nsp";
                     std::string nsppath = path + nspgame;
-                    if(Mara::fs::copy_file(BOREALIS_ASSET("icon/borealis.jpg"), nsppath.c_str()))
+                    if(Mara::fs::copy_file(HBL_GAME, nsppath.c_str()))
                         brls::Application::notify("En el proximo arranque del juego lanzará automaticamente el parcheador.");
 
                     dialog->close();
