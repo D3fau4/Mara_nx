@@ -83,27 +83,6 @@ namespace Mara::fs {
         if(is.eof()) return true;
         return false;
     }
-    Result copyFile(std::string source_file, std::string destination_file) {
-        std::filesystem::path p(destination_file);
-        std::string parent_path = p.parent_path().string();
-
-        if(!checkdirexist(parent_path)) {
-            brls::Logger::info("Carpeta creada: %s", parent_path);
-            std::filesystem::create_directories(parent_path);
-        }
-
-        if(checkFile(source_file)){
-            brls::Logger::error("Archivo no existe:", source_file.c_str());
-            brls::Logger::error(source_file.c_str());
-            return 1;
-        }
-
-        if(std::filesystem::copy_file(source_file, destination_file))
-            return 0;
-
-        return 1;
-    }
-
 
     Result DeleteFile(std::string path)
     {
