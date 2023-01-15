@@ -4,6 +4,7 @@
 #include <switch.h>
 #include "Program/Main.hpp"
 #include "ui/elements/ProgramidListItem.hpp"
+#include "ui/Tabs/AboutTab.hpp"
 
 namespace Mara::ui
 {

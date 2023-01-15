@@ -6,7 +6,7 @@
 #include <borealis.hpp>
 
 #include "Program/Main.hpp"
-#include "ui/MainActivity.hpp"
+#include "ui/Pages/MainActivity.hpp"
 
 brls::audio_switch* audioSwitch;
 
