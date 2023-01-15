@@ -2,6 +2,7 @@
 
 #include "borealis.hpp"
 #include "Program/Main.hpp"
+#include <math.h>
 
 namespace Mara::ui{
     class InstallerPage : public brls::View {

@@ -3,5 +3,8 @@
   "stage1" : {
     "title": "Bienvenido a Mara, a continuación se procederá a instalar la traducción, por favor no interrumpa el programa pulsando el botón \"Power\" o \"Home\".",
     "button": "Comenzar"
+  },
+  "stage2" : {
+    "title": "Parcheando..."
   }
 }

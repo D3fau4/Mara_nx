@@ -18,6 +18,7 @@ namespace Mara::fs {
     {
         if (checkdirexist(path) == false)
         {
+            std::filesystem::create_directories(path.c_str());
             mkdir(path.c_str(), 0777);
             return 0;
         }

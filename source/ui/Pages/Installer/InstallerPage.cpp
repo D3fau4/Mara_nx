@@ -3,7 +3,6 @@
 //
 
 #include "ui/Pages/Installer/InstallerPage.hpp"
-#include <math.h>
 
 namespace Mara::ui {
 

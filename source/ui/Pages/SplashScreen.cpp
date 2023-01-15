@@ -1,6 +1,7 @@
 #include "ui/Pages/SplashScreen.hpp"
 #include "ui/Pages/MainActivity.hpp"
 #include "ui/Pages/Installer/InstallerPage.hpp"
+#include "ui/Pages/Installer/InstallerProgessPage.hpp"
 
 namespace Mara::ui {
     SplashScreen::SplashScreen(SplashMode splashMode) {
@@ -25,6 +26,7 @@ namespace Mara::ui {
         brls::StagedAppletFrame* stagedFrame = new brls::StagedAppletFrame();
         stagedFrame->setTitle("installer/title"_i18n);
         stagedFrame->addStage(new InstallerPage(stagedFrame, "installer/stage1/button"_i18n));
+        stagedFrame->addStage(new InstallerProgessPage(stagedFrame));
         brls::Application::pushView(stagedFrame);
     }
 
