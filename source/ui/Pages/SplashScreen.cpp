@@ -18,16 +18,18 @@ namespace Mara::ui {
     void SplashScreen::draw(NVGcontext *vg, int x, int y, unsigned int width, unsigned int height, brls::Style *style,
                             brls::FrameContext *ctx) {
         NVGcolor color = a(nvgRGB(0x7f, 0xc7, 0xc0));
-
+        miliseconds++;
         if (color.a == 0.0f){
             return;
         }
 
         if(miliseconds == 150) {
+            // Start Main Activity
             auto pMainActivity = new Mara::ui::MainActivity();
-            if(pMainActivity->found){
+            if(!pMainActivity->found){
                 brls::Logger::error("Juego no encontrado.");
                 brls::Application::crash("main/error/gamenotfound"_i18n);
+                return;
             }
             brls::Application::pushView(pMainActivity->GetView(), brls::ViewAnimation::FADE);
         }
@@ -42,7 +44,6 @@ namespace Mara::ui {
         nvgFill(vg);
 
         this->m_logo->frame(ctx);
-        miliseconds++;
     }
 
     void SplashScreen::layout(NVGcontext *vg, brls::Style *style, brls::FontStash *stash) {
