@@ -2,7 +2,7 @@
 // Created by raul2 on 15/01/2023.
 //
 
-#include "ui/Pages/InstallerPage.hpp"
+#include "ui/Pages/Installer/InstallerPage.hpp"
 #include <math.h>
 
 namespace Mara::ui {

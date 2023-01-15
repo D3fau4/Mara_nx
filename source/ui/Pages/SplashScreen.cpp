@@ -1,6 +1,6 @@
 #include "ui/Pages/SplashScreen.hpp"
 #include "ui/Pages/MainActivity.hpp"
-#include "ui/Pages/InstallerPage.hpp"
+#include "ui/Pages/Installer/InstallerPage.hpp"
 
 namespace Mara::ui {
     SplashScreen::SplashScreen(SplashMode splashMode) {
@@ -8,10 +8,10 @@ namespace Mara::ui {
         switch (splashMode) {
             case SplashMode::SplashMode_Applet:
             default:
-                m_logo = new brls::Image(BOREALIS_ASSET("img/tradusquare_logo.png"));
+                m_logo = new brls::Image(BOREALIS_ASSET("img/splash_ts.png"));
                 break;
             case SplashMode::SplashMode_App:
-                m_logo = new brls::Image(BOREALIS_ASSET("img/tradusquare_logo.png"));
+                m_logo = new brls::Image(BOREALIS_ASSET("img/splash_hack.png"));
                 break;
         }
         m_logo->setParent(this);
@@ -72,6 +72,6 @@ namespace Mara::ui {
     }
 
     void SplashScreen::layout(NVGcontext *vg, brls::Style *style, brls::FontStash *stash) {
-        this->m_logo->setBoundaries((1280 - 1024) / 2, (720 - 512) / 2, 1024, 512);
+        this->m_logo->setBoundaries((1280 - 1280) / 2, (720 - 720) / 2, 1280, 720);
     }
 }
