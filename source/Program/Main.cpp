@@ -5,13 +5,23 @@
 
 #include "Program/Main.hpp"
 #include "ui/Pages/SplashScreen.hpp"
-brls::audio_switch* audioSwitch;
+
+void initServices(){
+    nsInitialize();
+    pmdmntInitialize();
+}
+
+void shutdownServices(){
+    nsExit();
+    pmdmntExit();
+}
 
 // Main program entrypoint
 int main(int argc, char* argv[])
 {
     appletInitializeGamePlayRecording();
-    nsInitialize();
+
+    initServices();
 
     i18n::loadTranslations();
 
@@ -22,8 +32,6 @@ int main(int argc, char* argv[])
         brls::Logger::error("Unable to init Mara");
         return EXIT_FAILURE;
     }
-    // Init audio
-    audioSwitch = new brls::audio_switch();
 
     // Establece que se pueda salir de la app
     brls::Application::setGlobalQuit(true);
@@ -35,8 +43,7 @@ int main(int argc, char* argv[])
         // Algo a ejecutar por cada refresco
     }
 
-    // close audio
-    audioSwitch->Close();
+    shutdownServices();
 
     return EXIT_SUCCESS;
 }

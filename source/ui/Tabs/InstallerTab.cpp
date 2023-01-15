@@ -16,8 +16,19 @@ namespace Mara::ui {
                 };
 
                 brls::GenericEvent::Callback yesCallback = [dialog](brls::View* view) {
+                    char path[255];
+                    sprintf(path, "sdmc:/atmosphere/contents/%016lX/", GAME_PID_USA);
+
+                    Result rc = Mara::fs::createdir("sdmc:/atmosphere/contents/");
+                    if(R_SUCCEEDED(rc)){
+                        rc = Mara::fs::createdir(path);
+                    }
+                    std::string nspgame = "exefs.nsp";
+                    std::string nsppath = path + nspgame;
+                    if(Mara::fs::copy_file(BOREALIS_ASSET("icon/borealis.jpg"), nsppath.c_str()))
+                        brls::Application::notify("En el proximo arranque del juego lanzará automaticamente el parcheador.");
+
                     dialog->close();
-                    brls::Application::notify("En el proximo arranque del juego lanzará automaticamente el parcheador.");
                 };
 
                 dialog->addButton("main/installer/appletinstallwarning/yes"_i18n, yesCallback);

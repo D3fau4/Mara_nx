@@ -4,6 +4,7 @@
 #include "../../Program/Main.hpp"
 #include "ui/Tab.hpp"
 #include "pm/pm.hpp"
+#include "fs/fs.hpp"
 
 namespace Mara {
     namespace ui {
