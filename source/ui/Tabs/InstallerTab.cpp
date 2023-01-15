@@ -1,4 +1,5 @@
 #include "ui/Tabs/InstallerTab.hpp"
+#include "ns/ns.hpp"
 
 namespace Mara::ui {
 
@@ -17,7 +18,14 @@ namespace Mara::ui {
 
                 brls::GenericEvent::Callback yesCallback = [dialog](brls::View* view) {
                     char path[255];
-                    sprintf(path, "sdmc:/atmosphere/contents/%016lX/", GAME_PID_USA);
+
+                    for (auto &title : Mara::ns::getAllTitles())
+                    {
+                        if(title.second->GetTitleID() == GAME_PID_USA || title.second->GetTitleID() == GAME_PID_EUR) {
+                            sprintf(path, "sdmc:/atmosphere/contents/%016lX/", title.second->GetTitleID());
+                            break;
+                        }
+                    }
 
                     Result rc = Mara::fs::createdir("sdmc:/atmosphere/contents/");
                     if(R_SUCCEEDED(rc)){
