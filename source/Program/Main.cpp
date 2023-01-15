@@ -1,13 +1,10 @@
-#include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 #include <switch.h>
 #include <borealis.hpp>
 
 #include "Program/Main.hpp"
-#include "ui/Pages/MainActivity.hpp"
-
+#include "ui/Pages/SplashScreen.hpp"
 brls::audio_switch* audioSwitch;
 
 // Main program entrypoint
@@ -30,13 +27,8 @@ int main(int argc, char* argv[])
 
     // Establece que se pueda salir de la app
     brls::Application::setGlobalQuit(true);
-    auto pMainActivity = new Mara::ui::MainActivity();
-    brls::Application::pushView(pMainActivity->GetView());
-
-    if(!pMainActivity->found){
-        brls::Logger::error("Juego no encontrado.");
-        brls::Application::crash("main/error/gamenotfound"_i18n);
-    }
+    auto splash = new Mara::ui::SplashScreen();
+    brls::Application::pushView(splash);
 
     while (brls::Application::mainLoop())
     {
