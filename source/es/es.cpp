@@ -6,12 +6,10 @@
 
 namespace Mara {
     es::es(int securityLevel) {
-
-        splEsInitialize();
+        smGetService(&this->g_EsService, "es");
         this->securityLevel = static_cast<SecurityLevel>(securityLevel);
     }
 
     es::~es() {
-        splEsExit();
     }
 }
