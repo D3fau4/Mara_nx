@@ -2,6 +2,7 @@
 
 #include "../types.h"
 #include <switch.h>
+#include <borealis.hpp>
 
 namespace Mara {
     class es {
@@ -9,6 +10,17 @@ namespace Mara {
         es(int securityLevel);
 
         virtual ~es();
+
+        Result CountPersonalizedTicket(s32 *out_count);
+        Result CountCommonTicket(s32 *out_count);
+        Result CountPrepurchaseRecord(s32 *out_count);
+        Result ListCommonTicketRightsIds(s32 *out_entries_written, FsRightsId *out_ids, s32 count);
+        Result ListPersonalizedTicketRightsIds(s32 *out_entries_written, FsRightsId *out_ids, s32 count);
+        Result ListPrepurchaseRecordRightsIds(s32 *out_entries_written, FsRightsId *out_ids, s32 count);
+
+        /* CUSTOM */
+        bool isRightIdPurchased(u64 right_id);
+        bool isRightIdPirated(u64 right_id);
 
         enum SecurityLevel {
             SecurityLevel_None,

@@ -8,6 +8,7 @@
 #include "fs/fs.hpp"
 #include "pm/pm.hpp"
 #include "ns/ns.hpp"
+#include "es/es.hpp"
 
 void initServices(){
     nsInitialize();
@@ -42,6 +43,15 @@ int main(int argc, char* argv[])
     }
 
     brls::View* splash;
+
+    Mara::es *es = new Mara::es(Mara::es::SecurityLevel::SecurityLevel_Full);
+
+    if(es->isRightIdPurchased(GAME_PID_USA) || es->isRightIdPurchased(GAME_PID_EUR))
+        brls::Logger::info("Juego comprado encontrado");
+    else if(es->isRightIdPirated(GAME_PID_USA) || es->isRightIdPirated(GAME_PID_EUR))
+        brls::Logger::info("Juego pirateado encontrado");
+    else
+        brls::Logger::info("Ticket del juego no encontrado puede ser un cartucho.");
 
     if(Mara::pm::isInApplicationMode()) {
 

@@ -45,3 +45,21 @@ typedef	unsigned long	ulong;
 #define PAGE_SIZE (0x1000)
 #define ALWAYS_INLINE inline __attribute__((always_inline))
 #define BITSIZEOF(x) (sizeof(x) * CHAR_BIT)
+
+#define to64b(arr) (((uint64_t)(((uint8_t *)(arr))[7]) <<  0)+\
+                    ((uint64_t)(((uint8_t *)(arr))[6]) <<  8)+\
+                    ((uint64_t)(((uint8_t *)(arr))[5]) << 16)+\
+                    ((uint64_t)(((uint8_t *)(arr))[4]) << 24)+\
+                    ((uint64_t)(((uint8_t *)(arr))[3]) << 32)+\
+                    ((uint64_t)(((uint8_t *)(arr))[2]) << 40)+\
+                    ((uint64_t)(((uint8_t *)(arr))[1]) << 48)+\
+                    ((uint64_t)(((uint8_t *)(arr))[0]) << 56))
+
+#define to64l(arr) (((uint64_t)(((uint8_t *)(arr))[0]) <<  0)+\
+                    ((uint64_t)(((uint8_t *)(arr))[1]) <<  8)+\
+                    ((uint64_t)(((uint8_t *)(arr))[2]) << 16)+\
+                    ((uint64_t)(((uint8_t *)(arr))[3]) << 24)+\
+                    ((uint64_t)(((uint8_t *)(arr))[4]) << 32)+\
+                    ((uint64_t)(((uint8_t *)(arr))[5]) << 40)+\
+                    ((uint64_t)(((uint8_t *)(arr))[6]) << 48)+\
+                    ((uint64_t)(((uint8_t *)(arr))[7]) << 56))
