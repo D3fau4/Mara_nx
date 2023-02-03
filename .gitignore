@@ -93,3 +93,4 @@ sept/sept-secondary/KEYS.py
 **/build
 
 /cmake-build-debug/
+!/resources/Patch/hbl.nsp
