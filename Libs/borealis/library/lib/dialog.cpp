@@ -34,7 +34,7 @@ Dialog::Dialog(View* contentView)
     if (contentView)
         contentView->setParent(this);
 
-    this->registerAction("brls/hints/back"_i18n, Key::B, [this] { return this->onCancel(); });
+    this->registerAction("brls/hints/back"_i18n, Key::B, [this] { return this->onCancel(); }, SOUND_BACK);
 }
 
 Dialog::Dialog(std::string text)

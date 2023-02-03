@@ -25,6 +25,7 @@
 #include <borealis/actions.hpp>
 #include <borealis/event.hpp>
 #include <borealis/frame_context.hpp>
+#include <borealis/audio.hpp>
 #include <functional>
 #include <map>
 #include <string>
@@ -105,6 +106,8 @@ class View
     bool forceTranslucent = false;
 
     Theme* themeOverride = nullptr;
+
+    enum Sound focusSound = SOUND_FOCUS_CHANGE;
 
     bool hidden = false;
 
@@ -209,7 +212,7 @@ class View
 
     void* getParentUserData();
 
-    void registerAction(std::string hintText, Key key, ActionListener actionListener, bool hidden = false);
+    void registerAction(std::string hintText, Key key, ActionListener actionListener, bool hidden = false, enum Sound sound = SOUND_NONE);
     void updateActionHint(Key key, std::string hintText);
     void setActionAvailable(Key key, bool available);
 
@@ -273,6 +276,16 @@ class View
     {
         // Nothing to do
     }
+
+    /**
+     * Sets the sound to play when this view gets focused.
+     */
+    inline void setFocusSound(enum Sound sound)
+    {
+        this->focusSound = sound;
+    }
+
+    virtual enum Sound getFocusSound();
 
     /**
       * Called when the show() animation (fade in)

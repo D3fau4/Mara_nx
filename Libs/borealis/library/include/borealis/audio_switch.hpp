@@ -19,7 +19,6 @@ namespace brls {
         bool play(Sound sound, float pitch = 1) override;
         bool Close();
     private:
-
         const std::string SOUNDS_MAP[_SOUND_MAX] = {
                 "", // SOUND_NONE
                 "SeBtnFocus", // SOUND_FOCUS_CHANGE

@@ -32,7 +32,7 @@ namespace brls {
     }
 
     audio_switch::~audio_switch() {
-
+        Close();
     }
 
     bool audio_switch::Close(){

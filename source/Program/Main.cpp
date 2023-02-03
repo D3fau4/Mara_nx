@@ -21,6 +21,7 @@ void shutdownServices(){
     pmdmntExit();
     apmExit();
     smExit();
+    dynamic_cast<brls::audio_switch*>(brls::Application::getAudioPlayer())->Close();
 }
 
 // Main program entrypoint

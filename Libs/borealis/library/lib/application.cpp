@@ -142,6 +142,18 @@ bool Application::init(std::string title, Style* style, LibraryViewsThemeVariant
     // Init managers
     Application::taskManager         = new TaskManager();
     Application::notificationManager = new NotificationManager();
+    Application::platform            = new audio_switch();
+
+    if(Application::platform)
+        brls::Logger::error("Error al iniciar el modulo de audio");
+
+    // Load most commonly used sounds
+    AudioPlayer* audioPlayer = Application::getAudioPlayer();
+    for (enum Sound sound : {
+            SOUND_FOCUS_CHANGE,
+            SOUND_FOCUS_ERROR,
+            SOUND_CLICK,
+    })audioPlayer->load(sound);
 
     // Init static variables
     Application::currentFocus = nullptr;
@@ -615,13 +627,23 @@ void Application::navigate(FocusDirection direction)
     // No view to focus at the end of the traversal: wiggle and return
     if (!nextFocus)
     {
+        Application::getAudioPlayer()->play(SOUND_FOCUS_ERROR);
         Application::currentFocus->shakeHighlight(direction);
         return;
     }
 
+    // If new focus not the same as now, play sound and give it focus
+    if (Application::getCurrentFocus() != nextFocus->getDefaultFocus())
+    {
+        Application::focusLocked = true;
+        enum Sound focusSound = nextFocus->getFocusSound();
+        Application::getAudioPlayer()->play(focusSound);
+        Application::giveFocus(nextFocus);
+    }
+
     // Otherwise give it focus
-    Application::focusLocked = true;
-    Application::giveFocus(nextFocus);
+    /*Application::focusLocked = true;
+    Application::giveFocus(nextFocus);*/
 }
 
 void Application::onGamepadButtonPressed(char button, bool repeating)
@@ -662,6 +684,8 @@ void Application::onGamepadButtonPressed(char button, bool repeating)
         default:
             break;
     }
+
+    Application::getAudioPlayer()->play(SOUND_CLICK_ERROR);
 }
 
 View* Application::getCurrentFocus()
@@ -1167,6 +1191,11 @@ VoidEvent* Application::getGlobalHintsUpdateEvent()
 FontStash* Application::getFontStash()
 {
     return &Application::fontStash;
+}
+
+AudioPlayer* Application::getAudioPlayer()
+{
+    return Application::platform;
 }
 
 void Application::setBackground(Background* background)

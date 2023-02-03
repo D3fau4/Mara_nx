@@ -391,12 +391,12 @@ void View::drawBackground(NVGcontext* vg, FrameContext* ctx, Style* style)
     }
 }
 
-void View::registerAction(std::string hintText, Key key, ActionListener actionListener, bool hidden)
+void View::registerAction(std::string hintText, Key key, ActionListener actionListener, bool hidden, enum Sound sound)
 {
     if (auto it = std::find(this->actions.begin(), this->actions.end(), key); it != this->actions.end())
-        *it = { key, hintText, true, hidden, actionListener };
+        *it = { key, hintText, true, hidden, actionListener, sound };
     else
-        this->actions.push_back({ key, hintText, true, hidden, actionListener });
+        this->actions.push_back({ key, hintText, true, hidden, actionListener, sound });
 }
 
 void View::updateActionHint(Key key, std::string hintText)
@@ -665,6 +665,11 @@ void View::invalidate(bool immediate)
         this->layout(Application::getNVGContext(), Application::getStyle(), Application::getFontStash());
     else
         this->dirty = true;
+}
+
+enum Sound View::getFocusSound()
+{
+    return this->focusSound;
 }
 
 } // namespace brls

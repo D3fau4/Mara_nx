@@ -20,6 +20,7 @@
 
 #include <functional>
 #include <string>
+#include <borealis/audio.hpp>
 
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
@@ -58,6 +59,7 @@ struct Action
     bool available;
     bool hidden;
     ActionListener actionListener;
+    enum Sound sound;
 
     bool operator==(const Key other)
     {

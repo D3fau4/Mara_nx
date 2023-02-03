@@ -34,6 +34,7 @@
 #include <borealis/task_manager.hpp>
 #include <borealis/theme.hpp>
 #include <borealis/view.hpp>
+#include <borealis/audio.hpp>
 #include <map>
 #include <vector>
 
@@ -148,6 +149,8 @@ class Application
 
     static std::string getTitle();
 
+    static AudioPlayer *getAudioPlayer();
+
     /**
      * Cleans up GL state after nanovg
      * So that we can draw regular stuff over it
@@ -206,6 +209,8 @@ class Application
     static void frame();
     static void clear();
     static void exit();
+
+    inline static AudioPlayer* platform = nullptr;
 
     /**
      * Handles actions for the currently focused view and
