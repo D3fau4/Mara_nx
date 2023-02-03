@@ -39,7 +39,7 @@ AppletFrame::AppletFrame(bool padLeft, bool padRight)
     this->hint = new Hint();
     this->hint->setParent(this);
 
-    this->registerAction("brls/hints/back"_i18n, Key::B, [this] { return this->onCancel(); }, SOUND_BACK);
+    this->registerAction("brls/hints/back"_i18n, Key::B, [this] { return this->onCancel(); }, false, SOUND_BACK);
 }
 
 void AppletFrame::draw(NVGcontext* vg, int x, int y, unsigned width, unsigned height, Style* style, FrameContext* ctx)

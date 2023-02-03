@@ -100,7 +100,7 @@ SidebarItem::SidebarItem(std::string label, Sidebar* sidebar)
     Style* style = Application::getStyle();
     this->setHeight(style->Sidebar.Item.height);
 
-    this->registerAction("brls/hints/ok"_i18n, Key::A, [this] { return this->onClick(); }, SOUND_CLICK_SIDEBAR);
+    this->registerAction("brls/hints/ok"_i18n, Key::A, [this] { return this->onClick(); }, false, SOUND_CLICK_SIDEBAR);
 }
 
 void SidebarItem::draw(NVGcontext* vg, int x, int y, unsigned width, unsigned height, Style* style, FrameContext* ctx)
