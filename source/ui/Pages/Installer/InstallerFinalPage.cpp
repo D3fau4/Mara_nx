@@ -8,7 +8,7 @@ namespace Mara::ui {
         this->button->setParent(this);
         this->button->getClickEvent()->subscribe([frame](View* view) {
             if (frame->isLastStage())
-                brls::Application::popView();
+                brls::Application::quit();
             else
                 frame->nextStage();
         });
