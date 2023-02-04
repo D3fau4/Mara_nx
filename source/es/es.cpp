@@ -152,4 +152,13 @@ namespace Mara {
 
         return false;
     }
+
+    bool es::checkGameCardSig(u8 data[]){
+
+        if(std::equal(data, data + 0x100, InvalidCertSig)){
+            return false;
+        }
+
+        return true;
+    }
 }

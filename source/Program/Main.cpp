@@ -9,8 +9,10 @@
 #include "pm/pm.hpp"
 #include "ns/ns.hpp"
 #include "es/es.hpp"
+#include "fs/Gamecard.hpp"
 
 void initServices(){
+    fsInitialize();
     nsInitialize();
     pmdmntInitialize();
     apmInitialize();
@@ -18,6 +20,7 @@ void initServices(){
 }
 
 void shutdownServices(){
+    fsExit();
     nsExit();
     pmdmntExit();
     apmExit();
@@ -45,6 +48,20 @@ int main(int argc, char* argv[])
     brls::View* splash;
 
     Mara::es *es = new Mara::es(Mara::es::SecurityLevel::SecurityLevel_Full);
+
+    Mara::fs::Gamecard *gamecard = new Mara::fs::Gamecard();
+
+    Result rc = gamecard->ReadHeader();
+    if(R_FAILED(rc)){
+        brls::Logger::error("Unable to read header");
+    } else if(R_SUCCEEDED(rc)){
+        brls::Logger::info("Cabecera del cartucho almacenado correctamente.");
+    }
+
+    if(es->checkGameCardSig(gamecard->g_gameCardHeader.signature))
+        brls::Logger::info("Cartucho original");
+    else
+        brls::Logger::error("Cartucho pirata");
 
     if(es->isRightIdPurchased(GAME_PID_USA) || es->isRightIdPurchased(GAME_PID_EUR))
         brls::Logger::info("Juego comprado encontrado");

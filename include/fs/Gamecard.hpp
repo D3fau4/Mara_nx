@@ -81,6 +81,8 @@ namespace Mara::fs {
 
     class Gamecard {
     public:
+        GameCardHeader g_gameCardHeader = {0};
+
         Gamecard();
         virtual ~Gamecard();
 
@@ -91,7 +93,6 @@ namespace Mara::fs {
         FsEventNotifier g_gameCardEventNotifier = {0};
         FsGameCardHandle g_gameCardHandle = {0};
         FsStorage g_gameCardStorage = {0};
-        GameCardHeader g_gameCardHeader = {0};
 
         bool gamecardIsInserted(void);
     };
