@@ -12,7 +12,7 @@
 #include <vector>
 #include <borealis.hpp>
 
-namespace Mara::fs{
+namespace Mara::fs {
     bool copy_file(const char* From, const char* To, std::size_t MaxBufferSize = 1048576);
     Result checkFile(std::string path);
     Result createFile(std::string path);

@@ -45,6 +45,7 @@ typedef	unsigned long	ulong;
 #define PAGE_SIZE (0x1000)
 #define ALWAYS_INLINE inline __attribute__((always_inline))
 #define BITSIZEOF(x) (sizeof(x) * CHAR_BIT)
+#define BIT_LONG(n)                     (1UL << (n))
 
 #define to64b(arr) (((uint64_t)(((uint8_t *)(arr))[7]) <<  0)+\
                     ((uint64_t)(((uint8_t *)(arr))[6]) <<  8)+\
@@ -63,3 +64,32 @@ typedef	unsigned long	ulong;
                     ((uint64_t)(((uint8_t *)(arr))[5]) << 40)+\
                     ((uint64_t)(((uint8_t *)(arr))[6]) << 48)+\
                     ((uint64_t)(((uint8_t *)(arr))[7]) << 56))
+
+typedef struct {
+    union {
+        u32 value;
+        struct {
+            u32 relstep : 8;
+            u32 micro   : 8;
+            u32 minor   : 8;
+            u32 major   : 8;
+        };
+    };
+} SdkAddOnVersion;
+
+typedef struct {
+    union {
+        u32 value;
+        struct {
+            u32 minor_relstep : 8;
+            u32 major_relstep : 8;
+            u32 micro         : 4;
+            u32 minor         : 6;
+            u32 major         : 6;
+        } system_version;
+        struct {
+            u32 private_ver   : 16;
+            u32 release_ver   : 16;
+        } application_version;
+    };
+} Version;
