@@ -803,6 +803,7 @@ void Application::exit()
 
     delete Application::taskManager;
     delete Application::notificationManager;
+    delete Application::audio_switch;
 
     delete Application::currentThemeVariantsWrapper;
     delete Application::currentStyle;
