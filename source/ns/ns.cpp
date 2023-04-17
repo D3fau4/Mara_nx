@@ -2,9 +2,9 @@
 
 namespace Mara::ns
 {
-    std::map<u64,Mara::ns::title*>& getAllTitles()
+    std::map<u64,Mara::ns::Title*>& getAllTitles()
     {
-        static std::map<u64, Mara::ns::title*> titles;
+        static std::map<u64, Mara::ns::Title*> titles;
         NsApplicationRecord *appRecords = new NsApplicationRecord[1024];
         s32 actualAppRecordCnt = 0;
         
@@ -16,7 +16,7 @@ namespace Mara::ns
 
         for(int i = 0; i < actualAppRecordCnt; i++)
         {
-            titles.insert({appRecords[i].application_id, new Mara::ns::title(appRecords[i].application_id)});
+            titles.insert({appRecords[i].application_id, new Mara::ns::Title(appRecords[i].application_id)});
         }
         
         return titles;
