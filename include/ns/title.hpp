@@ -14,6 +14,7 @@ namespace Mara::ns
         std::string GetTitleAuthor();
         std::string GetTitleVersion();
         u64 GetTitleID();
+        void Launch();
     private:
         u64 m_programid;
         

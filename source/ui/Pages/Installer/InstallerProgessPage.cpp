@@ -101,11 +101,12 @@ namespace Mara::ui {
         brls::Logger::debug(patchfile);
         brls::Logger::debug(outfile);
 
-        if(Mara::fs::DeleteFile(outfile));
+        // Elimina archivos antiguos
+        Mara::fs::DeleteFile(outfile);
 
         std::size_t last_slash_pos = outfile.find_last_of("/");
         std::string folder = outfile.substr(0, last_slash_pos);
-        if(Mara::fs::createdir(folder)){
+        if(Mara::fs::createdir(folder)) {
             brls::Logger::error("No se pudo crear la carpeta");
         }
 

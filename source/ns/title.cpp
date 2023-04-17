@@ -46,4 +46,8 @@ namespace Mara::ns
     {
         return this->m_programid;
     }
+
+    void title::Launch(){
+        appletRequestLaunchApplication(this->GetTitleID(), nullptr);
+    }
 }

@@ -18,7 +18,6 @@ namespace Mara::ui {
 
                 brls::GenericEvent::Callback yesCallback = [dialog](brls::View* view) {
                     char path[255];
-
                     for (auto &title : Mara::ns::getAllTitles())
                     {
                         if(title.second->GetTitleID() == GAME_PID_USA || title.second->GetTitleID() == GAME_PID_EUR) {
@@ -29,12 +28,32 @@ namespace Mara::ui {
 
                     Result rc = Mara::fs::createdir("sdmc:/atmosphere/contents/");
                     if(R_SUCCEEDED(rc)){
-                        rc = Mara::fs::createdir(path);
+                        Mara::fs::createdir(path);
                     }
+
                     std::string nspgame = "exefs.nsp";
                     std::string nsppath = path + nspgame;
-                    if(Mara::fs::copy_file(HBL_GAME, nsppath.c_str()))
-                        brls::Application::notify("En el proximo arranque del juego lanzará automaticamente el parcheador.");
+                    if(Mara::fs::copy_file(HBL_GAME, nsppath.c_str())) {
+                        //brls::Application::notify("En el proximo arranque del juego lanzará automaticamente el parcheador.");
+                        auto* dialog_done = new brls::Dialog("main/installer/appletinstalldone/message"_i18n);
+
+                        brls::GenericEvent::Callback yesCallback_done = [dialog_done](brls::View* view){
+                            for (auto &title : Mara::ns::getAllTitles())
+                            {
+                                if(title.second->GetTitleID() == GAME_PID_USA || title.second->GetTitleID() == GAME_PID_EUR) {
+                                    title.second->Launch();
+                                    break;
+                                }
+                            }
+                        };
+
+                        brls::GenericEvent::Callback noCallback_done = [dialog_done](brls::View* view) {
+                            dialog_done->close();
+                        };
+
+                        dialog_done->addButton("main/installer/appletinstalldone/yes"_i18n, yesCallback_done);
+                        dialog_done->addButton("main/installer/appletinstalldone/no"_i18n, noCallback_done);
+                    }
 
                     dialog->close();
                 };
