@@ -5,7 +5,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/d3fau4/nx-dev:nightly
+      image: ghcr.io/d3fau4/nx-dev
     steps:
     - uses: actions/checkout@v3
       with:
