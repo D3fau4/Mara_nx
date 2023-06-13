@@ -18,19 +18,7 @@ namespace Mara::ui {
 
         const std::string mountnamegame = GAME_MOUNT_NAME;
         const std::string mountmaraname = BOREALIS_RESOURCES;
-        const std::string sdmountname = "sdmc";
-
-        const std::string ori_files[3] = {
-                "cpkj/hackGU_cmn_a_nx.cpk",
-                "cpkj/hackGU_cmn_i.cpk",
-                "cpkj/hackGU_cmn_i_nx.cpk"
-        };
-
-        const std::string patches[3] = {
-                "Patch/hackGU_cmn_a_nx.cpk.xdelta",
-                "Patch/hackGU_cmn_i.cpk.xdelta",
-                "Patch/hackGU_cmn_i_nx.cpk.xdelta"
-        };
+        const std::string sdmountname = SDCARD_MOUNT_NAME;
 
     public:
         InstallerProgessPage(brls::StagedAppletFrame* frame);
