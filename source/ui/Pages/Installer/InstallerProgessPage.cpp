@@ -119,4 +119,8 @@ namespace Mara::ui {
         this->progressValue++;
         this->running = false;
     }
+
+    void InstallerProgessPage::asyncInstallJSON(int i) {
+
+    }
 }

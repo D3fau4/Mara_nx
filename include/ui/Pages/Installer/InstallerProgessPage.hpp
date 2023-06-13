@@ -3,6 +3,8 @@
 #include <thread>
 #include <functional>
 #include "Program/Main.hpp"
+#include "Utils/json.hpp"
+using json = nlohmann::json;
 
 namespace Mara::ui {
     class InstallerProgessPage : public brls::View {
@@ -15,6 +17,7 @@ namespace Mara::ui {
         std::thread t;
         bool running = false;
         u64 titlepid;
+        json m_maraconfig;
 
         const std::string mountnamegame = GAME_MOUNT_NAME;
         const std::string mountmaraname = BOREALIS_RESOURCES;
@@ -31,5 +34,7 @@ namespace Mara::ui {
         void willDisappear(bool resetState = false) override;
 
         void asyncPatch(int i);
+
+        void asyncInstallJSON(int i);
     };
 }
