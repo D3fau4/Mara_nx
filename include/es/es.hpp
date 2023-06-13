@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../types.h"
+#include "Utils/types.h"
 #include <switch.h>
 #include <borealis.hpp>
 

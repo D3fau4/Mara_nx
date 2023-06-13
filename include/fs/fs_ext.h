@@ -29,7 +29,7 @@ extern "C" {
 #endif
 
 #include <switch.h>
-#include "../types.h"
+#include "Utils/types.h"
 
 
 #define GAMECARD_CERT_MAGIC 0x43455254  /* "CERT". */
