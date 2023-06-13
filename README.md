@@ -1,6 +1,6 @@
 # Mara_nx
 
-Mara_nx is a game patching application for Nintendo Switch. This application was build with Borealis by natinusala to simplify the patching process for Spanish translations available on TraduSquare.
+Mara_nx is a game patching application for Nintendo Switch. This application was build with Borealis by natinusala to simplify the patching process for Spanish translations available on [TraduSquare](https://tradusquare.es/).
 
 ## Requirements for Compilation
 
@@ -15,7 +15,7 @@ Follow the steps below to build Mara_nx:
 
 1. Clone this repository to your system:
 ```
-git clone https://github.com/D3fau4/Mara_nx.git
+git clone --recurse-submodules https://github.com/D3fau4/Mara_nx.git
 ```
 
 2. Navigate to the cloned repository directory:
