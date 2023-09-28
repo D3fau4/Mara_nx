@@ -7,7 +7,7 @@ namespace Mara::ui
     {
         brls::TabFrame* rootFrame = new brls::TabFrame();
         rootFrame->setTitle("main/title"_i18n);
-        rootFrame->setIcon(BOREALIS_ASSET("icon/borealis.jpg"));
+        rootFrame->setIcon(BOREALIS_ASSET("icon/Icon.jpg"));
 
         this->found = false;
         for (auto &title : Mara::ns::getAllTitles())

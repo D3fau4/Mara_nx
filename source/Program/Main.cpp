@@ -65,7 +65,7 @@ int main(int argc, char* argv[])
     if(es->isRightIdPurchased(GAME_PID_USA) || es->isRightIdPurchased(GAME_PID_EUR))
         brls::Logger::info("Juego comprado encontrado");
     else if(es->isRightIdPirated(GAME_PID_USA) || es->isRightIdPirated(GAME_PID_EUR))
-        brls::Logger::info("Juego pirateado encontrado");
+        brls::Logger::error("Juego pirateado encontrado");
     else
         brls::Logger::info("Ticket del juego no encontrado puede ser un cartucho.");
 

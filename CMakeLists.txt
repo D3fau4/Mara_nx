@@ -56,11 +56,11 @@ target_compile_definitions(Mara_nx PRIVATE PROJECT_NAME="${PROJECT_NAME}")
 # Next, we need to set the required target properties
 # so CMake can detect the metadata for the application.
 set_target_properties(Mara_nx PROPERTIES
-        APP_TITLE "Mara"
-        APP_AUTHOR "TraduSquare"
-        APP_VERSION "0.1.0"
+        APP_TITLE "UPNX Installer"
+        APP_AUTHOR "UnderProject"
+        APP_VERSION "1.0.0"
         ROMFS "${CMAKE_CURRENT_LIST_DIR}/resources"
-        ICON "${CMAKE_CURRENT_LIST_DIR}/resources/icon/borealis.jpg"
+        ICON "${CMAKE_CURRENT_LIST_DIR}/resources/icon/Icon.jpg"
         )
 
 

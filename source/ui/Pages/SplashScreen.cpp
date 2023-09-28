@@ -13,7 +13,7 @@ namespace Mara::ui {
                 m_logo = new brls::Image(BOREALIS_ASSET("img/splash_ts.png"));
                 break;
             case SplashMode::SplashMode_App:
-                m_logo = new brls::Image(BOREALIS_ASSET("img/splash_hack.png"));
+                m_logo = new brls::Image(BOREALIS_ASSET("img/splash_undertale.png"));
                 break;
         }
         m_logo->setParent(this);

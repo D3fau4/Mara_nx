@@ -7,6 +7,7 @@ using namespace i18n::literals; // for _i18n
 #define GAME_PID_USA 0x010080B00AD66000 // UNDERTALE
 #define GAME_PID_EUR 0x010080B00AD66000 // UNDERTALE
 #define HBL_GAME "romfs:/Patch/hbl.nsp"
+#define SDCARD_MOUNT_NAME "sdmc"
 
 const std::string ori_files[1] = {
         "game.win",

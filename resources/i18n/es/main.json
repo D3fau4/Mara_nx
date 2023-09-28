@@ -1,13 +1,13 @@
 {
-    "title": ".hack//G.U. Last Recode Patcher",
+    "title": "Undertale Patcher",
     "creditstab": "Créditos",
     "error": {
         "gamenotfound": "Juego no encontrado."
     },
     "translation": {
-        "title": "Versión del parche: v1.0.0",
+        "title": "Versión del parche: v1.5",
         "subtitle": "",
-        "translatedby": "Traducido por",
+        "translatedby": "Porteado por",
         "romhackingtitle": "Romhacking:",
         "translatortitle": "Traducción:",
         "correctiontitle": "Corrección:",
