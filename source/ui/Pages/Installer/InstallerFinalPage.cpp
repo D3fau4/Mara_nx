@@ -1,4 +1,5 @@
 #include "ui/Pages/Installer/InstallerFinalPage.hpp"
+#include "ns/ns.hpp"
 
 namespace Mara::ui {
 
@@ -7,8 +8,16 @@ namespace Mara::ui {
         this->button = (new brls::Button(brls::ButtonStyle::BORDERLESS))->setLabel(label);//->setImage(BOREALIS_ASSET("icon/borealis.jpg"));
         this->button->setParent(this);
         this->button->getClickEvent()->subscribe([frame](View* view) {
-            if (frame->isLastStage())
-                brls::Application::quit();
+            if (frame->isLastStage()){
+                for (auto &title : Mara::ns::getAllTitles())
+                {
+                    if(title.second->GetTitleID() == GAME_PID_USA || title.second->GetTitleID() == GAME_PID_EUR) {
+                        title.second->Launch();
+                        brls::Application::quit();
+                        break;
+                    }
+                }
+            }
             else
                 frame->nextStage();
         });

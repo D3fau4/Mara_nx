@@ -18,7 +18,7 @@ namespace Mara::ui {
 
         const std::string mountnamegame = GAME_MOUNT_NAME;
         const std::string mountmaraname = BOREALIS_RESOURCES;
-        const std::string sdmountname = "sdmc";
+        const std::string sdmountname = SDCARD_MOUNT_NAME;
 
     public:
         InstallerProgessPage(brls::StagedAppletFrame* frame);

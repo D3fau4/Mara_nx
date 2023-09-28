@@ -5,15 +5,16 @@
 
 namespace Mara::ns
 {
-    class title
+    class Title
     {
     public:
-        title(u64 program_id);
+        Title(u64 program_id);
 
         std::string GetTitleName();
         std::string GetTitleAuthor();
         std::string GetTitleVersion();
         u64 GetTitleID();
+        void Launch();
     private:
         u64 m_programid;
         

@@ -52,14 +52,15 @@ namespace Mara::fs {
 
     Result checkFile(std::string path)
     {
-        FILE *f;
-        f = fopen(path.c_str(), "rb");
-        if (f)
-        {
-            fclose(f);
+        std::ifstream is(path, std::ios_base::binary);
+
+        if (is.good()){
+            is.close();
+            return 0;
+        } else {
+            is.close();
             return 1;
         }
-        return 0;
     }
 
     bool copy_file(const char* From, const char* To, std::size_t MaxBufferSize)

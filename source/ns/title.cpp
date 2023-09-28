@@ -1,8 +1,8 @@
-﻿#include "ns/title.hpp"
+﻿#include "ns/Title.hpp"
 
 namespace Mara::ns
 {
-    title::title(u64 program_id) : m_programid(program_id)
+    Title::Title(u64 program_id) : m_programid(program_id)
     {
         NsApplicationControlData appControlData;
         size_t appControlDataSize = 0;
@@ -27,23 +27,27 @@ namespace Mara::ns
         this->m_version = std::string(appControlData.nacp.display_version);
     }
 
-    std::string title::GetTitleName()
+    std::string Title::GetTitleName()
     {
         return this->m_titlename;
     }
     
-    std::string title::GetTitleAuthor()
+    std::string Title::GetTitleAuthor()
     {
         return this->m_author;
     }
     
-    std::string title::GetTitleVersion()
+    std::string Title::GetTitleVersion()
     {
         return this->m_version;
     }
 
-    u64 title::GetTitleID()
+    u64 Title::GetTitleID()
     {
         return this->m_programid;
+    }
+
+    void Title::Launch(){
+        appletRequestLaunchApplication(this->GetTitleID(), nullptr);
     }
 }
