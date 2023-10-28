@@ -25,7 +25,7 @@
         "appletinstalldone": {
             "message": "Se ha instalado correctamente el parcheador. La próxima vez que abras el juego te arrancara el instalador.\n¿Quieres lanzar ahora el juego?",
             "yes": "Lanzar juego",
-            "no": "Continuar"
+            "no": "Cerrar instalador"
         }
     }
 }

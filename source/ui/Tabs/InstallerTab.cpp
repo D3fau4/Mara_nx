@@ -51,8 +51,8 @@ namespace Mara::ui {
                                 }
                             };
 
-                            brls::GenericEvent::Callback noCallback_done = [dialog_done, dialog](brls::View* view) {
-                                dialog_done->close();
+                            brls::GenericEvent::Callback noCallback_done = [](brls::View* view) {
+                                brls::Application::quit();
                             };
 
                             dialog_done->addButton("main/installer/appletinstalldone/yes"_i18n, yesCallback_done);
