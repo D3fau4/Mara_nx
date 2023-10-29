@@ -10,10 +10,10 @@ namespace Mara::ui {
         switch (splashMode) {
             case SplashMode::SplashMode_Applet:
             default:
-                m_logo = new brls::Image(BOREALIS_ASSET("img/splash_ts.png"));
+                m_logo = new brls::Image(BOREALIS_ASSET(PROGRAM_SPLASH_PATH));
                 break;
             case SplashMode::SplashMode_App:
-                m_logo = new brls::Image(BOREALIS_ASSET("img/splash_hack.png"));
+                m_logo = new brls::Image(BOREALIS_ASSET(GAME_SPLASH_PATH));
                 break;
         }
         m_logo->setParent(this);

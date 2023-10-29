@@ -8,8 +8,10 @@
 #include "fs/fs.hpp"
 #include "pm/pm.hpp"
 #include "ns/ns.hpp"
+#ifdef CHECK_SIGNATURE
 #include "es/es.hpp"
 #include "fs/Gamecard.hpp"
+#endif
 
 void initServices(){
     fsInitialize();
@@ -46,6 +48,8 @@ int main(int argc, char* argv[])
 
     brls::View* splash;
 
+#ifdef CHECK_SIGNATURE
+
     Mara::es *es = new Mara::es(Mara::es::SecurityLevel::SecurityLevel_Full);
 
     Mara::fs::Gamecard *gamecard = new Mara::fs::Gamecard();
@@ -68,6 +72,9 @@ int main(int argc, char* argv[])
         brls::Logger::info("Juego pirateado encontrado");
     else
         brls::Logger::info("Ticket del juego no encontrado puede ser un cartucho.");
+
+#endif
+
 
     if(Mara::pm::isInApplicationMode()) {
 

@@ -34,7 +34,7 @@ namespace Mara::ui {
 
                     std::string nspgame = "exefs.nsp";
                     std::string nsppath = path + nspgame;
-                    if(Mara::fs::copy_file(HBL_GAME, nsppath.c_str())) {
+                    if(Mara::fs::copy_file(HBL_R0MFS_PATH, nsppath.c_str())) {
                         /*brls::Application::notify("En el proximo arranque del juego lanzará automaticamente el parcheador.");
                         dialog->close();*/
                         dialog->hide([dialog]() {

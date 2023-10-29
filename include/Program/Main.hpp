@@ -4,10 +4,15 @@ namespace i18n = brls::i18n;	// for loadTranslations() and getStr()
 using namespace i18n::literals; // for _i18n
 
 #define GAME_MOUNT_NAME "gromfs"
+#define SDCARD_MOUNT_NAME "sdmc"
+#define ROMFS_MOUNT_NAME BOREALIS_RESOURCES
 #define GAME_PID_USA 0x0100BA9014A02000 // .Hack G.U Title id (USA)
 #define GAME_PID_EUR 0x0100CA9014A04000 // .Hack G.U Title id (EUR)
-#define HBL_GAME "romfs:/Patch/hbl.nsp"
-#define SDCARD_MOUNT_NAME "sdmc"
+#define GAME_PID_JP 0x0100CA9014A04000 // .Hack G.U Title id (EUR)
+#define HBL_R0MFS_PATH ROMFS_MOUNT_NAME ":/Patch/hbl.nsp"
+#define MARA_PATH SDCARD_MOUNT_NAME ":/switch/"
+#define PROGRAM_SPLASH_PATH "img/splash_ts.png"
+#define GAME_SPLASH_PATH "img/splash_hack.png"
 
 const std::string ori_files[3] = {
         "cpkj/hackGU_cmn_a_nx.cpk",
