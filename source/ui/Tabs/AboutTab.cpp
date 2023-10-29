@@ -9,18 +9,6 @@ namespace Mara::ui {
         brls::ListItem *cabeza = new brls::ListItem("main/translation/title"_i18n, "", "main/translation/subtitle"_i18n);
         tablist->addView(cabeza);
 
-        /*brls::Label* patchdescription = new brls::Label(
-                brls::LabelStyle::REGULAR,
-                "main/translation/translatedby"_i18n,
-                true);
-
-        patchdescription->setHorizontalAlign(NVG_ALIGN_CENTER);
-        tablist->addView(patchdescription);
-
-        brls::Image* a = new brls::Image(BOREALIS_ASSET("img/transcene_logo.png"));
-        a->setHeight(150);
-        tablist->addView(a);*/
-
         // Creditos
         nlohmann::json jsonData;
         std::ifstream inputFile(ABOUT_TAB_INFO);
@@ -28,6 +16,25 @@ namespace Mara::ui {
             inputFile >> jsonData;
             brls::Logger::info("Archivo abierto");
             // Crear elementos de la interfaz de usuario desde los datos del JSON
+
+            if(jsonData.contains("team_logo_path") && jsonData["team_logo_path"].is_string()){
+
+                std::string team_logo_path = jsonData["team_logo_path"].get<std::string>();
+
+                if(!team_logo_path.empty()){
+                    brls::Label* patchdescription = new brls::Label(
+                            brls::LabelStyle::REGULAR,
+                            "main/translation/translatedby"_i18n,
+                            true);
+
+                    patchdescription->setHorizontalAlign(NVG_ALIGN_CENTER);
+                    tablist->addView(patchdescription);
+                    brls::Image* a = new brls::Image(ROMFS_MOUNT_NAME + team_logo_path);
+                    a->setHeight(150);
+                    tablist->addView(a);
+                }
+            }
+
             if (jsonData.contains("categories") && jsonData["categories"].is_structured()) {
 
                 for (const auto& category : jsonData["categories"]) {
