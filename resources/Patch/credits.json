@@ -1,0 +1,59 @@
+{
+  "categories": [
+    {
+      "name": "Traductores",
+      "items": [
+        {
+          "title": "Hotaru",
+          "image": "icon/borealis.jpg",
+          "description": "Un buen tio."
+        },
+        {
+          "title": "Damon",
+          "image": "icon/borealis.jpg",
+          "description": "No le va el jamón."
+        },
+        {
+          "title": "Gerwulf",
+          "image": "icon/borealis.jpg",
+          "description": "Tremendo pana."
+        },
+        {
+          "title": "Óscar73",
+          "image": "icon/borealis.jpg",
+          "description": "Disgaea 2 son los padres..."
+        },
+        {
+          "title": "Shiryu",
+          "image": "icon/borealis.jpg",
+          "description": "Una J con patas"
+        }
+      ]
+    },
+    {
+      "name": "Corrección",
+      "items": [
+        {
+          "title": "Leeg",
+          "image": "icon/borealis.jpg",
+          "description": "Un maestro de las lenguas."
+        },
+        {
+          "title": "Shiryu",
+          "image": "icon/borealis.jpg",
+          "description": "Shiryu al cuadrado."
+        }
+      ]
+    },
+    {
+      "name": "Gráficos",
+      "items": [
+        {
+          "title": "Nakufox",
+          "image": "icon/borealis.jpg",
+          "description": "Maestro de las artes."
+        }
+      ]
+    }
+  ]
+}
