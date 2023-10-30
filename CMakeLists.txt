@@ -18,6 +18,9 @@ add_compile_definitions(HAVE_LIBNX)
 ## Borealis resource location
 add_compile_definitions(BOREALIS_RESOURCES="romfs:/")
 
+# Descompentar si quereis comprobar que el juego sea original
+# add_compile_definitions(CHECK_SIGNATURE)
+
 set(LIBS_DIR Libs/)
 set(BOREALIS_DIR ${LIBS_DIR}/borealis/)
 set(XDELTA3_DIR ${LIBS_DIR}xdelta3-nx)
