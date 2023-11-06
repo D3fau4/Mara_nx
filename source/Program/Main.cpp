@@ -6,6 +6,7 @@
 #include "Program/Main.hpp"
 #include "ui/Pages/SplashScreen.hpp"
 #include "fs/fs.hpp"
+#include "helpers/Helper.hpp"
 #include "pm/pm.hpp"
 #include "ns/ns.hpp"
 #ifdef CHECK_SIGNATURE
@@ -35,6 +36,7 @@ int main(int argc, char* argv[])
     appletInitializeGamePlayRecording();
 
     initServices();
+    Helper::initializeConstants();
 
     i18n::loadTranslations();
 
@@ -66,9 +68,9 @@ int main(int argc, char* argv[])
     else
         brls::Logger::error("Cartucho pirata");
 
-    if(es->isRightIdPurchased(GAME_PID_USA) || es->isRightIdPurchased(GAME_PID_EUR))
+    if(es->isRightIdPurchased(Helper::program_id))
         brls::Logger::info("Juego comprado encontrado");
-    else if(es->isRightIdPirated(GAME_PID_USA) || es->isRightIdPirated(GAME_PID_EUR))
+    else if(es->isRightIdPirated(Helper::program_id))
         brls::Logger::info("Juego pirateado encontrado");
     else
         brls::Logger::info("Ticket del juego no encontrado puede ser un cartucho.");
