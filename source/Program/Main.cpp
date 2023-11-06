@@ -6,13 +6,15 @@
 #include "Program/Main.hpp"
 #include "ui/Pages/SplashScreen.hpp"
 #include "fs/fs.hpp"
-#include "helpers/Helper.hpp"
+#include "helpers/PatchData.hpp"
 #include "pm/pm.hpp"
 #include "ns/ns.hpp"
 #ifdef CHECK_SIGNATURE
 #include "es/es.hpp"
 #include "fs/Gamecard.hpp"
 #endif
+
+Mara::PatchData* patchData;
 
 void initServices(){
     fsInitialize();
@@ -36,7 +38,6 @@ int main(int argc, char* argv[])
     appletInitializeGamePlayRecording();
 
     initServices();
-    Helper::initializeConstants();
 
     i18n::loadTranslations();
 
@@ -47,6 +48,9 @@ int main(int argc, char* argv[])
         brls::Logger::error("Unable to init Mara");
         return EXIT_FAILURE;
     }
+
+    // Init PatchData
+    patchData = new Mara::PatchData();
 
     brls::View* splash;
 
@@ -68,9 +72,9 @@ int main(int argc, char* argv[])
     else
         brls::Logger::error("Cartucho pirata");
 
-    if(es->isRightIdPurchased(Helper::program_id))
+    if(es->isRightIdPurchased(PatchData::program_id))
         brls::Logger::info("Juego comprado encontrado");
-    else if(es->isRightIdPirated(Helper::program_id))
+    else if(es->isRightIdPirated(PatchData::program_id))
         brls::Logger::info("Juego pirateado encontrado");
     else
         brls::Logger::info("Ticket del juego no encontrado puede ser un cartucho.");

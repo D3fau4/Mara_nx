@@ -1,5 +1,7 @@
 #pragma once
 
+#include "helpers/PatchData.hpp"
+
 namespace i18n = brls::i18n;	// for loadTranslations() and getStr()
 using namespace i18n::literals; // for _i18n
 
@@ -20,6 +22,8 @@ using namespace i18n::literals; // for _i18n
 #define MARA_PATH SDCARD_MOUNT_NAME ":/switch/Mara_nx.nro"
 #define PROGRAM_SPLASH_PATH "img/splash_ts.png"
 #define GAME_SPLASH_PATH "img/splash_hack.png"
+
+extern Mara::PatchData* patchData;
 
 // Rutas de los archivos originales
 const std::string ori_files[3] = {
