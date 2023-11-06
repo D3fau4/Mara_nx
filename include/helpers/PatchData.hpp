@@ -1,19 +1,19 @@
 #pragma once
 
 #include <string>
+#include <vector>
 #include "json.hpp"
 #include "types.h"
 #include "ns/ns.hpp"
 
-namespace Mara {
+namespace Mara::helpers {
     class PatchData {
     private:
         void initializeConstants();
 
     public:
         ns::Title *program;
-        std::string *ori_files;
-        std::string *patch_files;
+        std::vector<std::string> patch_files;
 
         PatchData();
 

@@ -20,5 +20,6 @@ namespace Mara::fs {
     Result createdir(std::string path);
     bool checkdirexist(std::string path);
     std::vector<std::string> getDirectories(const std::string &s);
+    std::vector<std::string> getFiles(const std::string &s);
     Result DeleteFile(std::string path);
 }

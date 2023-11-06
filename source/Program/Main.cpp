@@ -14,7 +14,7 @@
 #include "fs/Gamecard.hpp"
 #endif
 
-Mara::PatchData* patchData;
+Mara::helpers::PatchData* patchData;
 
 void initServices(){
     fsInitialize();
@@ -50,7 +50,7 @@ int main(int argc, char* argv[])
     }
 
     // Init PatchData
-    patchData = new Mara::PatchData();
+    patchData = new Mara::helpers::PatchData();
 
     brls::View* splash;
 
@@ -72,9 +72,9 @@ int main(int argc, char* argv[])
     else
         brls::Logger::error("Cartucho pirata");
 
-    if(es->isRightIdPurchased(PatchData::program_id))
+    if(es->isRightIdPurchased(patchData->program->GetTitleID()))
         brls::Logger::info("Juego comprado encontrado");
-    else if(es->isRightIdPirated(PatchData::program_id))
+    else if(es->isRightIdPirated(patchData->program->GetTitleID()))
         brls::Logger::info("Juego pirateado encontrado");
     else
         brls::Logger::info("Ticket del juego no encontrado puede ser un cartucho.");

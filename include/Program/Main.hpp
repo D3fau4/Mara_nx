@@ -23,7 +23,7 @@ using namespace i18n::literals; // for _i18n
 #define PROGRAM_SPLASH_PATH "img/splash_ts.png"
 #define GAME_SPLASH_PATH "img/splash_hack.png"
 
-extern Mara::PatchData* patchData;
+extern Mara::helpers::PatchData* patchData;
 
 // Rutas de los archivos originales
 const std::string ori_files[3] = {
