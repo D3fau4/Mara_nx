@@ -26,6 +26,7 @@ namespace Mara {
                         u64 game_pid = std::stoull(version["game_pid"].get<std::string>(), nullptr, 16);
                         if (game_pid == title.second->GetTitleID()) {
                             program = new ns::Title(game_pid);
+                            brls::Logger::info("Juego encontrado");
                         }
                     }
                 }
