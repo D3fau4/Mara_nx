@@ -2,7 +2,7 @@
   "team_logo_path" : "img/transcene_logo.png",
   "categories": [
     {
-      "name": "Traductores",
+      "name": "Traducción",
       "items": [
         {
           "title": "Hotaru",
@@ -47,7 +47,7 @@
       ]
     },
     {
-      "name": "Gráficos",
+      "name": "Edición de gráficos",
       "items": [
         {
           "title": "Nakufox",

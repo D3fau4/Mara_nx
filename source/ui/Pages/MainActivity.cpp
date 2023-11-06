@@ -1,5 +1,6 @@
 ﻿#include "ui/Pages/MainActivity.hpp"
 #include "ns/ns.hpp"
+#include "json.hpp"
 
 namespace Mara::ui
 {

@@ -100,4 +100,13 @@ namespace Mara::fs {
                 r.push_back(p.path().filename());
         return r;
     }
+
+    std::vector<std::string> getFiles(const std::string &s)
+    {
+        std::vector<std::string> r;
+        for (auto &p : std::filesystem::recursive_directory_iterator(s))
+            if (!p.is_directory())
+                r.push_back(p.path().filename());
+        return r;
+    }
 }
