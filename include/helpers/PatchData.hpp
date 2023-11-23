@@ -14,6 +14,7 @@ namespace Mara::helpers {
     public:
         ns::Title *program;
         std::vector<std::string> patch_files;
+        std::string base_path;
 
         PatchData();
 

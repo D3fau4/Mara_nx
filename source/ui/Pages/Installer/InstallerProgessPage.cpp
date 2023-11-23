@@ -2,6 +2,7 @@
 #include "Helper.h"
 #include "ns/ns.hpp"
 #include "fs/fs.hpp"
+#include "helpers/StringsUtils.hpp"
 
 namespace Mara::ui {
 
@@ -93,15 +94,12 @@ namespace Mara::ui {
 
     void InstallerProgessPage::asyncPatch() {
         char path[255];
-        sprintf(path, "%s:/%s", GAME_MOUNT_NAME,
-                patchData->patch_files[this->progressValue].replace(patchData->patch_files[this->progressValue].begin(),
-                                                                                                     patchData->patch_files[this->progressValue].end(), ".xdelta", "").c_str());
+        sprintf(path, "%s:/%s", GAME_MOUNT_NAME, Mara::helpers::String::replace(patchData->patch_files[this->progressValue], ".xdelta", "").c_str());
         std::string orifile = path;
         sprintf(path, "%s:/atmosphere/contents/%016lX/romfs/%s", SDCARD_MOUNT_NAME, titlepid,
-                patchData->patch_files[this->progressValue].replace(patchData->patch_files[this->progressValue].begin(),
-                                                                    patchData->patch_files[this->progressValue].end(), ".xdelta", "").c_str());
+                Mara::helpers::String::replace(patchData->patch_files[this->progressValue], std::string(".xdelta"),  std::string()).c_str());
         std::string outfile = path;
-        sprintf(path, "%s%s", ROMFS_MOUNT_NAME, patchData->patch_files[this->progressValue].c_str());
+        sprintf(path, "%s%s%s", ROMFS_MOUNT_NAME, patchData->base_path.c_str(), patchData->patch_files[this->progressValue].c_str());
         std::string patchfile = path;
 
         brls::Logger::debug("Ruta archivo original: %s", orifile.c_str());

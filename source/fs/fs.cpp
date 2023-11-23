@@ -1,4 +1,6 @@
+#include <regex>
 #include "fs/fs.hpp"
+#include "Program/Main.hpp"
 
 namespace Mara::fs {
 
@@ -105,8 +107,11 @@ namespace Mara::fs {
     {
         std::vector<std::string> r;
         for (auto &p : std::filesystem::recursive_directory_iterator(s))
-            if (!p.is_directory())
-                r.push_back(p.path().filename());
+            if (!p.is_directory()){
+                std::string path = p.path();
+                r.push_back(std::regex_replace(path, std::regex("romfs:/Patch/[a-zA-Z]+/"), std::string()));
+            }
         return r;
     }
+
 }

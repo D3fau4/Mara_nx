@@ -29,6 +29,7 @@ namespace Mara::helpers {
                         if (game_pid == title.second->GetTitleID()) {
                             program = new ns::Title(game_pid);
                             brls::Logger::info("Juego encontrado");
+                            this->base_path = version["base_path"].get<std::string>();
                             this->patch_files = Mara::fs::getFiles(ROMFS_MOUNT_NAME + version["base_path"].get<std::string>());
                             if(this->patch_files.empty()){
                                 brls::Logger::error("No se han encontrado parches xdelta en la carpeta %s%s", ROMFS_MOUNT_NAME, version["base_path"].get<std::string>().c_str());
