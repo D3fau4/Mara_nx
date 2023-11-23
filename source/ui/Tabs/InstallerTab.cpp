@@ -10,7 +10,7 @@ namespace Mara::ui {
             char path[255];
             for (auto &title : Mara::ns::getAllTitles())
             {
-                if(title.second->GetTitleID() == GAME_PID_USA || title.second->GetTitleID() == GAME_PID_EUR) {
+                if(title.second->GetTitleID() == patchData->program->GetTitleID()) {
                     sprintf(path, "sdmc:/atmosphere/contents/%016lX/", title.second->GetTitleID());
                     break;
                 }
@@ -43,7 +43,7 @@ namespace Mara::ui {
                             brls::GenericEvent::Callback yesCallback_done = [dialog_done](brls::View* view){
                                 for (auto &title : Mara::ns::getAllTitles())
                                 {
-                                    if(title.second->GetTitleID() == GAME_PID_USA || title.second->GetTitleID() == GAME_PID_EUR) {
+                                    if(title.second->GetTitleID() == patchData->program->GetTitleID()) {
                                         title.second->Launch();
                                         brls::Application::quit();
                                         break;
@@ -81,7 +81,7 @@ namespace Mara::ui {
                 if(R_SUCCEEDED(Mara::fs::checkFile(nsppath.c_str()))){
                     for (auto &title : Mara::ns::getAllTitles())
                     {
-                        if(title.second->GetTitleID() == GAME_PID_USA || title.second->GetTitleID() == GAME_PID_EUR) {
+                        if(title.second->GetTitleID() == patchData->program->GetTitleID()) {
                             title.second->Launch();
                             brls::Application::quit();
                             break;

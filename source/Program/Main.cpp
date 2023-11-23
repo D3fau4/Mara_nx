@@ -88,7 +88,7 @@ int main(int argc, char* argv[])
         char path[255];
         for (auto &title : Mara::ns::getAllTitles())
         {
-            if(title.second->GetTitleID() == GAME_PID_USA || title.second->GetTitleID() == GAME_PID_EUR) {
+            if(title.second->GetTitleID() == patchData->program->GetTitleID()) {
                 sprintf(path, "sdmc:/atmosphere/contents/%016lX/exefs.nsp", title.second->GetTitleID());
                 Mara::fs::DeleteFile(path);
             }

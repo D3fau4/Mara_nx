@@ -11,7 +11,7 @@ namespace Mara::ui {
             if (frame->isLastStage()){
                 for (auto &title : Mara::ns::getAllTitles())
                 {
-                    if(title.second->GetTitleID() == GAME_PID_USA || title.second->GetTitleID() == GAME_PID_EUR) {
+                    if(title.second->GetTitleID() == patchData->program->GetTitleID()) {
                         title.second->Launch();
                         brls::Application::quit();
                         break;
