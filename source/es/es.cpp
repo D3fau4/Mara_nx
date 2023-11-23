@@ -1,16 +1,9 @@
-//
-// Created by raul2 on 21/01/2023.
-//
 
 #include "es/es.hpp"
 
 namespace Mara {
-    es::es(int securityLevel) {
+    es::es() {
         smGetService(&this->g_EsService, "es");
-
-        if(&this->g_EsService == nullptr)
-            brls::Logger::error("Failed to get es service");
-        this->securityLevel = static_cast<SecurityLevel>(securityLevel);
     }
 
     es::~es() {

@@ -4,6 +4,10 @@
 
 #include "ui/Pages/Installer/InstallerPage.hpp"
 
+
+#ifdef CHECK_SIGNATURE
+#include "es/Security.hpp"
+#endif
 namespace Mara::ui {
 
     InstallerPage::InstallerPage(brls::StagedAppletFrame *frame, std::string label) {
@@ -19,6 +23,13 @@ namespace Mara::ui {
         this->label = new brls::Label(brls::LabelStyle::DIALOG, "installer/stage1/title"_i18n, true);
         this->label->setHorizontalAlign(NVG_ALIGN_CENTER);
         this->label->setParent(this);
+#ifdef CHECK_SIGNATURE
+        auto* drm = new Security();
+        if (drm->IsPirated()){
+            // TODO: algun mensaje mas elaborado
+            brls::Application::notify("Pirata, cabron.");
+        }
+#endif
     }
 
     InstallerPage::~InstallerPage() {

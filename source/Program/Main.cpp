@@ -9,10 +9,6 @@
 #include "helpers/PatchData.hpp"
 #include "pm/pm.hpp"
 #include "ns/ns.hpp"
-#ifdef CHECK_SIGNATURE
-#include "es/es.hpp"
-#include "fs/Gamecard.hpp"
-#endif
 
 Mara::helpers::PatchData* patchData;
 
@@ -53,34 +49,6 @@ int main(int argc, char* argv[])
     patchData = new Mara::helpers::PatchData();
 
     brls::View* splash;
-
-#ifdef CHECK_SIGNATURE
-
-    Mara::es *es = new Mara::es(Mara::es::SecurityLevel::SecurityLevel_Full);
-
-    Mara::fs::Gamecard *gamecard = new Mara::fs::Gamecard();
-
-    Result rc = gamecard->ReadHeader();
-    if(R_FAILED(rc)){
-        brls::Logger::error("Unable to read header");
-    } else if(R_SUCCEEDED(rc)){
-        brls::Logger::info("Cabecera del cartucho almacenado correctamente.");
-    }
-
-    if(es->checkGameCardSig(gamecard->g_gameCardHeader.signature))
-        brls::Logger::info("Cartucho original");
-    else
-        brls::Logger::error("Cartucho pirata");
-
-    if(es->isRightIdPurchased(patchData->program->GetTitleID()))
-        brls::Logger::info("Juego comprado encontrado");
-    else if(es->isRightIdPirated(patchData->program->GetTitleID()))
-        brls::Logger::info("Juego pirateado encontrado");
-    else
-        brls::Logger::info("Ticket del juego no encontrado puede ser un cartucho.");
-
-#endif
-
 
     if(Mara::pm::isInApplicationMode()) {
 
