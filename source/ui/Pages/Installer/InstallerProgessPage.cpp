@@ -15,6 +15,10 @@ namespace Mara::ui {
         this->label->setHorizontalAlign(NVG_ALIGN_CENTER);
         this->label->setParent(this);
 
+        this->Sublabel = new brls::Label(brls::LabelStyle::DESCRIPTION, "installer/stage2/warning"_i18n, true);
+        this->Sublabel->setHorizontalAlign(NVG_ALIGN_CENTER);
+        this->Sublabel->setParent(this);
+
         // Montar romfs del programa en el que se esta ejecutando
         Result rc = romfsMountFromCurrentProcess(GAME_MOUNT_NAME);
         if(R_SUCCEEDED(rc)){
@@ -41,6 +45,7 @@ namespace Mara::ui {
     InstallerProgessPage::~InstallerProgessPage() {
         delete this->progressDisp;
         delete this->label;
+        delete this->Sublabel;
     }
 
     void InstallerProgessPage::draw(NVGcontext *vg, int x, int y, unsigned int width, unsigned int height,
@@ -65,6 +70,7 @@ namespace Mara::ui {
         this->progressDisp->setProgress(this->progressValue, patchData->patch_files.size());
         this->progressDisp->frame(ctx);
         this->label->frame(ctx);
+        this->Sublabel->frame(ctx);
     }
 
     void InstallerProgessPage::layout(NVGcontext *vg, brls::Style *style, brls::FontStash *stash) {
@@ -73,9 +79,18 @@ namespace Mara::ui {
 
         this->label->setBoundaries(
                 this->x + this->width / 2 - this->label->getWidth() / 2,
-                this->y + (this->height - style->AppletFrame.footerHeight) / 2,
+                this->y + ((this->height - 50 ) - style->AppletFrame.footerHeight) / 2,
                 this->label->getWidth(),
                 this->label->getHeight());
+
+        this->Sublabel->setWidth(roundf((float)this->width * style->CrashFrame.labelWidth));
+        this->Sublabel->invalidate(true);
+
+        this->Sublabel->setBoundaries(
+                this->x + this->width / 2 - this->Sublabel->getWidth() / 2,
+                this->y + ((this->height + 20) - style->AppletFrame.footerHeight) / 2,
+                this->Sublabel->getWidth(),
+                this->Sublabel->getHeight());
 
         this->progressDisp->setBoundaries(
                 this->x + this->width / 2 - style->CrashFrame.buttonWidth,

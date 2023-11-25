@@ -96,3 +96,4 @@ sept/sept-secondary/KEYS.py
 /cmake-build-debug/
 /cmake-build-release/
 !/resources/Patch/hbl.nsp
+*.xdelta

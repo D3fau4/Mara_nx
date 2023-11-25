@@ -29,8 +29,12 @@ namespace Mara::fs {
 
     Result DeleteDir(std::string path)
     {
-        std::filesystem::remove_all(path);
-        rmdir(path.c_str());
+        auto dir = getFiles(path);
+        for (auto f : dir){
+            DeleteFile(f);
+        }
+        //rmdir(path.c_str());
+
         return 0;
     }
 

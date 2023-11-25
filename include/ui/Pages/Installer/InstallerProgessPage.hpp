@@ -10,6 +10,7 @@ namespace Mara::ui {
         brls::StagedAppletFrame* frame;
         brls::ProgressDisplay* progressDisp;
         brls::Label* label;
+        brls::Label* Sublabel;
 
         int progressValue = 0;
         std::thread t;

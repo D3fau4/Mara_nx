@@ -32,11 +32,16 @@ namespace Mara::ui {
                         Mara::fs::createdir(path);
                     }
 
+                    char path2[255];
+                    sprintf(path2, "%s:/atmosphere/contents/%016lX/romfs", SDCARD_MOUNT_NAME, patchData->program->GetTitleID());
+                    if(Mara::fs::checkdirexist(path2)){
+                        brls::Logger::debug("%s deleted", path2);
+                        Mara::fs::DeleteDir(path2);
+                    }
+
                     std::string nspgame = "exefs.nsp";
                     std::string nsppath = path + nspgame;
                     if(Mara::fs::copy_file(HBL_R0MFS_PATH, nsppath.c_str())) {
-                        /*brls::Application::notify("En el proximo arranque del juego lanzará automaticamente el parcheador.");
-                        dialog->close();*/
                         dialog->hide([dialog]() {
                             brls::Dialog* dialog_done = new brls::Dialog("main/installer/appletinstalldone/message"_i18n);
 
