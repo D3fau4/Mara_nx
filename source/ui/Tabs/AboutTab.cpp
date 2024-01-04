@@ -34,9 +34,29 @@ namespace Mara::ui {
 
         // Port
         tablist->addView(new brls::Header("Port"));
-        brls::ListItem *d3fau4 = new brls::ListItem("D3fau4", "", "");
+        brls::ListItem *d3fau4 = new brls::ListItem("Alexnavia3", "", "");
         d3fau4->setThumbnail(BOREALIS_ASSET("img/d3fau4.png"));
         tablist->addView(d3fau4);
+
+        brls::ListItem *Alexnavia3 = new brls::ListItem("Alexnavia3", "", "");
+        tablist->addView(Alexnavia3);
+
+        brls::ListItem *JonyLuke = new brls::ListItem("JonyLuke", "", "");
+        tablist->addView(JonyLuke);
+
+        brls::ListItem *Kardch = new brls::ListItem("Kardch", "", "");
+        Kardch->setThumbnail(BOREALIS_ASSET("img/Karch.jpg"));
+        tablist->addView(Kardch);
+
+        brls::ListItem *kato = new brls::ListItem("Kato-cha (LOL)", "", "");
+        tablist->addView(kato);
+
+        brls::ListItem *OddYow = new brls::ListItem("OddYow", "", "");
+        tablist->addView(OddYow);
+
+        brls::ListItem *Xalgovia = new brls::ListItem("Xalgovia", "", "");
+        Xalgovia->setThumbnail(BOREALIS_ASSET("img/X.jpg"));
+        tablist->addView(Xalgovia);
 
         // Team original
         tablist->addView(new brls::Header("Undertale-Spanish (Creadores de la traducción)"));
