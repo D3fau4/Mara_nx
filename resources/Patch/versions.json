@@ -1,0 +1,12 @@
+{
+  "game_versions": {
+    "eur": {
+      "game_pid": "0100CA9014A04000",
+      "base_path": "Patch/eur/"
+    },
+    "usa": {
+      "game_pid": "0100BA9014A02000",
+      "base_path": "Patch/usa/"
+    }
+  }
+}

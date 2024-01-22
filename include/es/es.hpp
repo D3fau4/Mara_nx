@@ -7,7 +7,7 @@
 namespace Mara {
     class es {
     public:
-        es(int securityLevel);
+        es();
 
         virtual ~es();
 
@@ -31,7 +31,6 @@ namespace Mara {
 
     private:
         Service g_EsService;
-        SecurityLevel securityLevel;
 
         u8 InvalidCertSig[0x100] = {
                 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,

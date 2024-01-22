@@ -89,9 +89,11 @@ sept/sept-secondary/KEYS.py
 *.bin
 *.enc
 
-**/out
-**/build
-
+**/[Oo]ut
+**/[Bb]uild
+**/[Bb]uild-[Dd]ebug
+**/[Bb]uild-[Rr]elease
 /cmake-build-debug/
 /cmake-build-release/
 !/resources/Patch/hbl.nsp
+*.xdelta

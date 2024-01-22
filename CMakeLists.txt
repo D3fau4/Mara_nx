@@ -19,7 +19,7 @@ add_compile_definitions(HAVE_LIBNX)
 add_compile_definitions(BOREALIS_RESOURCES="romfs:/")
 
 # Descompentar si quereis comprobar que el juego sea original
-# add_compile_definitions(CHECK_SIGNATURE)
+add_compile_definitions(CHECK_SIGNATURE)
 
 set(LIBS_DIR Libs/)
 set(BOREALIS_DIR ${LIBS_DIR}/borealis/)

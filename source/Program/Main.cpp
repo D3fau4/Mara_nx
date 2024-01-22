@@ -6,12 +6,11 @@
 #include "Program/Main.hpp"
 #include "ui/Pages/SplashScreen.hpp"
 #include "fs/fs.hpp"
+#include "helpers/PatchData.hpp"
 #include "pm/pm.hpp"
 #include "ns/ns.hpp"
-#ifdef CHECK_SIGNATURE
-#include "es/es.hpp"
-#include "fs/Gamecard.hpp"
-#endif
+
+Mara::helpers::PatchData* patchData;
 
 void initServices(){
     fsInitialize();
@@ -46,35 +45,10 @@ int main(int argc, char* argv[])
         return EXIT_FAILURE;
     }
 
+    // Init PatchData
+    patchData = new Mara::helpers::PatchData();
+
     brls::View* splash;
-
-#ifdef CHECK_SIGNATURE
-
-    Mara::es *es = new Mara::es(Mara::es::SecurityLevel::SecurityLevel_Full);
-
-    Mara::fs::Gamecard *gamecard = new Mara::fs::Gamecard();
-
-    Result rc = gamecard->ReadHeader();
-    if(R_FAILED(rc)){
-        brls::Logger::error("Unable to read header");
-    } else if(R_SUCCEEDED(rc)){
-        brls::Logger::info("Cabecera del cartucho almacenado correctamente.");
-    }
-
-    if(es->checkGameCardSig(gamecard->g_gameCardHeader.signature))
-        brls::Logger::info("Cartucho original");
-    else
-        brls::Logger::error("Cartucho pirata");
-
-    if(es->isRightIdPurchased(GAME_PID_USA) || es->isRightIdPurchased(GAME_PID_EUR))
-        brls::Logger::info("Juego comprado encontrado");
-    else if(es->isRightIdPirated(GAME_PID_USA) || es->isRightIdPirated(GAME_PID_EUR))
-        brls::Logger::info("Juego pirateado encontrado");
-    else
-        brls::Logger::info("Ticket del juego no encontrado puede ser un cartucho.");
-
-#endif
-
 
     if(Mara::pm::isInApplicationMode()) {
 
@@ -82,7 +56,7 @@ int main(int argc, char* argv[])
         char path[255];
         for (auto &title : Mara::ns::getAllTitles())
         {
-            if(title.second->GetTitleID() == GAME_PID_USA || title.second->GetTitleID() == GAME_PID_EUR) {
+            if(title.second->GetTitleID() == patchData->program->GetTitleID()) {
                 sprintf(path, "sdmc:/atmosphere/contents/%016lX/exefs.nsp", title.second->GetTitleID());
                 Mara::fs::DeleteFile(path);
             }

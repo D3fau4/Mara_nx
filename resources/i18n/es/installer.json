@@ -5,7 +5,8 @@
     "button": "Comenzar"
   },
   "stage2" : {
-    "title": "Parcheando..."
+    "title": "Parcheando...",
+    "warning": "Este proceso puede tardar varios minutos, dependiendo de tu microsd."
   },
   "stage3" : {
     "title": "¡Enhorabuena! Tu juego ya se ha parcheado. Ahora puedes cerrar el programa y disfrutar del juego.",

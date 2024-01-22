@@ -10,7 +10,7 @@ namespace Mara::ui {
             char path[255];
             for (auto &title : Mara::ns::getAllTitles())
             {
-                if(title.second->GetTitleID() == GAME_PID_USA || title.second->GetTitleID() == GAME_PID_EUR) {
+                if(title.second->GetTitleID() == patchData->program->GetTitleID()) {
                     sprintf(path, "sdmc:/atmosphere/contents/%016lX/", title.second->GetTitleID());
                     break;
                 }
@@ -32,18 +32,23 @@ namespace Mara::ui {
                         Mara::fs::createdir(path);
                     }
 
+                    char path2[255];
+                    sprintf(path2, "%s:/atmosphere/contents/%016lX/romfs", SDCARD_MOUNT_NAME, patchData->program->GetTitleID());
+                    if(Mara::fs::checkdirexist(path2)){
+                        brls::Logger::debug("%s deleted", path2);
+                        Mara::fs::DeleteDir(path2);
+                    }
+
                     std::string nspgame = "exefs.nsp";
                     std::string nsppath = path + nspgame;
                     if(Mara::fs::copy_file(HBL_R0MFS_PATH, nsppath.c_str())) {
-                        /*brls::Application::notify("En el proximo arranque del juego lanzará automaticamente el parcheador.");
-                        dialog->close();*/
                         dialog->hide([dialog]() {
                             brls::Dialog* dialog_done = new brls::Dialog("main/installer/appletinstalldone/message"_i18n);
 
                             brls::GenericEvent::Callback yesCallback_done = [dialog_done](brls::View* view){
                                 for (auto &title : Mara::ns::getAllTitles())
                                 {
-                                    if(title.second->GetTitleID() == GAME_PID_USA || title.second->GetTitleID() == GAME_PID_EUR) {
+                                    if(title.second->GetTitleID() == patchData->program->GetTitleID()) {
                                         title.second->Launch();
                                         brls::Application::quit();
                                         break;
@@ -81,7 +86,7 @@ namespace Mara::ui {
                 if(R_SUCCEEDED(Mara::fs::checkFile(nsppath.c_str()))){
                     for (auto &title : Mara::ns::getAllTitles())
                     {
-                        if(title.second->GetTitleID() == GAME_PID_USA || title.second->GetTitleID() == GAME_PID_EUR) {
+                        if(title.second->GetTitleID() == patchData->program->GetTitleID()) {
                             title.second->Launch();
                             brls::Application::quit();
                             break;

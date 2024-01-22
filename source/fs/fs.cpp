@@ -1,4 +1,6 @@
+#include <regex>
 #include "fs/fs.hpp"
+#include "Program/Main.hpp"
 
 namespace Mara::fs {
 
@@ -27,8 +29,12 @@ namespace Mara::fs {
 
     Result DeleteDir(std::string path)
     {
-        std::filesystem::remove_all(path);
-        rmdir(path.c_str());
+        auto dir = getFiles(path);
+        for (auto f : dir){
+            DeleteFile(f);
+        }
+        //rmdir(path.c_str());
+
         return 0;
     }
 
@@ -100,4 +106,16 @@ namespace Mara::fs {
                 r.push_back(p.path().filename());
         return r;
     }
+
+    std::vector<std::string> getFiles(const std::string &s)
+    {
+        std::vector<std::string> r;
+        for (auto &p : std::filesystem::recursive_directory_iterator(s))
+            if (!p.is_directory()){
+                std::string path = p.path();
+                r.push_back(std::regex_replace(path, std::regex("romfs:/Patch/[a-zA-Z]+/"), std::string()));
+            }
+        return r;
+    }
+
 }

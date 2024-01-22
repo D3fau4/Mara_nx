@@ -7,11 +7,7 @@
     "translation": {
         "title": "Versión del parche: v1.0.0",
         "subtitle": "",
-        "translatedby": "Traducido por",
-        "romhackingtitle": "Romhacking:",
-        "translatortitle": "Traducción:",
-        "correctiontitle": "Corrección:",
-        "graphicstitle": "Edición gráfica:"
+        "translatedby": "Este proyecto ha sido posible gracias a:"
     },
     "installer": {
         "title": "Instalador",

@@ -10,15 +10,12 @@ namespace Mara::ui {
         brls::StagedAppletFrame* frame;
         brls::ProgressDisplay* progressDisp;
         brls::Label* label;
+        brls::Label* Sublabel;
 
         int progressValue = 0;
         std::thread t;
         bool running = false;
         u64 titlepid;
-
-        const std::string mountnamegame = GAME_MOUNT_NAME;
-        const std::string mountmaraname = BOREALIS_RESOURCES;
-        const std::string sdmountname = SDCARD_MOUNT_NAME;
 
     public:
         InstallerProgessPage(brls::StagedAppletFrame* frame);
@@ -30,6 +27,6 @@ namespace Mara::ui {
         void willAppear(bool resetState = false) override;
         void willDisappear(bool resetState = false) override;
 
-        void asyncPatch(int i);
+        void asyncPatch();
     };
 }
