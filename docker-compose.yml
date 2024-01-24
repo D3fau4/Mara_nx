@@ -1,0 +1,7 @@
+version: '3'
+services:
+  compile-tool:
+    image: ghcr.io/d3fau4/nx-dev
+    volumes:
+      - .:/build
+    command: bash -c "cmake -G 'Unix Makefiles' --toolchain=DevkitA64Libnx.cmake -S . -B build && cmake --build build"

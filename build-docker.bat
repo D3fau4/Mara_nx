@@ -1,0 +1,3 @@
+@echo off
+docker compose up
+set /p DUMMY=Presiona una tecla para finalizar...
