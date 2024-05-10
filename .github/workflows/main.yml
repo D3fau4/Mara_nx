@@ -7,7 +7,7 @@ jobs:
     container:
       image: ghcr.io/d3fau4/nx-dev
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
           submodules: true
 
@@ -17,7 +17,7 @@ jobs:
         cmake -G "Unix Makefiles" --toolchain=DevkitA64Libnx.cmake -S . -B build
         cmake --build build
     - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v3.1.1
+      uses: actions/upload-artifact@v4
       with:
         name: build
         path: build/Mara_nx.nro
