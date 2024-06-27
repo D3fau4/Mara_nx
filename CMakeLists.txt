@@ -19,52 +19,40 @@ add_compile_definitions(HAVE_LIBNX)
 add_compile_definitions(BOREALIS_RESOURCES="romfs:/")
 
 # Descompentar si quereis comprobar que el juego sea original
-add_compile_definitions(CHECK_SIGNATURE)
+#add_compile_definitions(CHECK_SIGNATURE)
 
-set(LIBS_DIR Libs/)
-set(BOREALIS_DIR ${LIBS_DIR}/borealis/)
-set(XDELTA3_DIR ${LIBS_DIR}xdelta3-nx)
+set(LIBS_DIR "${CMAKE_SOURCE_DIR}/Libs")
+set(BOREALIS_DIR "${LIBS_DIR}/borealis")
+set(XDELTA3_DIR "${LIBS_DIR}/xdelta3-nx")
 
 # Borealis source with dependencies
 file(GLOB BOREALIS_SRC
-        ${BOREALIS_DIR}/library/lib/*.cpp
-        ${BOREALIS_DIR}/library/lib/extern/*/*.c
-        ${BOREALIS_DIR}/library/lib/extern/*/*/*.c
-        ${BOREALIS_DIR}/library/lib/*.cpp
-        ${BOREALIS_DIR}/library/lib/*.c
-        ${BOREALIS_DIR}/library/lib/extern/glad/*.c
-        ${BOREALIS_DIR}/library/lib/extern/nanovg/*.c
-        ${BOREALIS_DIR}/library/lib/extern/libretro-common/compat/*.c
-        ${BOREALIS_DIR}/library/lib/extern/libretro-common/encodings/*.c
-        ${BOREALIS_DIR}/library/lib/extern/libretro-common/features/*.c
-        ${BOREALIS_DIR}/library/lib/extern/switch-libpulsar/src/*/*.c
-        ${BOREALIS_DIR}/library/lib/extern/fmt/src/*.cc
-        )
+    ${BOREALIS_DIR}/library/lib/*.cpp
+    ${BOREALIS_DIR}/library/lib/extern/**/*.c
+    ${BOREALIS_DIR}/library/lib/extern/fmt/src/*.cc
+)
 
 # Xdelta 3 source
 add_subdirectory(${XDELTA3_DIR}/Sources/Library/)
 
-## Project sources
+# Project sources
 include_directories(${PROJECT_SOURCE_DIR}/include/)
 file(GLOB_RECURSE SOURCES_ASM ${PROJECT_SOURCE_DIR}/source/*.s)
-file(GLOB_RECURSE SOURCES_C ${PROJECT_SOURCE_DIR}/source/*.c
-        ${PROJECT_SOURCE_DIR}/source/*/*.c
-        ${PROJECT_SOURCE_DIR}/source/*/*/*.c)
-file(GLOB_RECURSE SOURCES_CXX ${PROJECT_SOURCE_DIR}/source/*.cpp
-        ${PROJECT_SOURCE_DIR}/source/*/*.cpp
-        ${PROJECT_SOURCE_DIR}/source/*/*/*.cpp)
+file(GLOB_RECURSE SOURCES_C ${PROJECT_SOURCE_DIR}/source/**/*.c)
+file(GLOB_RECURSE SOURCES_CXX ${PROJECT_SOURCE_DIR}/source/**/*.cpp)
 
 add_executable(Mara_nx ${SOURCES_ASM} ${SOURCES_C} ${SOURCES_CXX} ${BOREALIS_SRC})
 target_compile_definitions(Mara_nx PRIVATE PROJECT_NAME="${PROJECT_NAME}")
+
 # Next, we need to set the required target properties
 # so CMake can detect the metadata for the application.
 set_target_properties(Mara_nx PROPERTIES
-        APP_TITLE "Mara"
-        APP_AUTHOR "TraduSquare"
-        APP_VERSION "0.1.0"
-        ROMFS "${CMAKE_CURRENT_LIST_DIR}/resources"
-        ICON "${CMAKE_CURRENT_LIST_DIR}/resources/icon/borealis.jpg"
-        )
+    APP_TITLE "Mara"
+    APP_AUTHOR "TraduSquare"
+    APP_VERSION "0.1.0"
+    ROMFS "${CMAKE_CURRENT_LIST_DIR}/resources"
+    ICON "${CMAKE_CURRENT_LIST_DIR}/resources/icon/borealis.jpg"
+)
 
 
 target_include_directories(Mara_nx PUBLIC
