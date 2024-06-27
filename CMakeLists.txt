@@ -27,6 +27,7 @@ set(XDELTA3_DIR "${LIBS_DIR}/xdelta3-nx")
 
 # Borealis source with dependencies
 file(GLOB BOREALIS_SRC
+    ${BOREALIS_DIR}/library/lib/*.c
     ${BOREALIS_DIR}/library/lib/*.cpp
     ${BOREALIS_DIR}/library/lib/extern/**/*.c
     ${BOREALIS_DIR}/library/lib/extern/fmt/src/*.cc
