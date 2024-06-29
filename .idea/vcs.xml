@@ -3,6 +3,19 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Libs/borealis" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Libs/nstool" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Libs/nstool/deps/libfmt" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Libs/nstool/deps/liblz4" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Libs/nstool/deps/libmbedtls" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Libs/nstool/deps/libpietendo" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Libs/nstool/deps/libpietendo/deps/libfmt" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Libs/nstool/deps/libpietendo/deps/libmbedtls" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Libs/nstool/deps/libpietendo/deps/libtoolchain" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Libs/nstool/deps/libpietendo/deps/libtoolchain/deps/libfmt" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Libs/nstool/deps/libpietendo/deps/libtoolchain/deps/libmbedtls" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Libs/nstool/deps/libtoolchain" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Libs/nstool/deps/libtoolchain/deps/libfmt" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Libs/nstool/deps/libtoolchain/deps/libmbedtls" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/Libs/xdelta3-nx" vcs="Git" />
   </component>
 </project>

@@ -95,5 +95,6 @@ sept/sept-secondary/KEYS.py
 **/[Bb]uild-[Rr]elease
 /cmake-build-debug/
 /cmake-build-release/
+/cmake-build-debug-docker/
 !/resources/Patch/hbl.nsp
 *.xdelta
