@@ -4,3 +4,6 @@
 [submodule "Libs/borealis"]
 	path = Libs/borealis
 	url = https://github.com/D3fau4/borealis.git
+[submodule "Libs/nstool"]
+	path = Libs/nstool
+	url = https://github.com/D3fau4/nstool.git
