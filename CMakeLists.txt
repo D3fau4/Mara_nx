@@ -25,6 +25,7 @@ set(LIBS_DIR Libs/)
 set(BOREALIS_DIR ${LIBS_DIR}/borealis/)
 set(XDELTA3_DIR ${LIBS_DIR}xdelta3-nx)
 set(NSTOOL_DIR ${LIBS_DIR}nstool)
+set(FATFS_DIR ${LIBS_DIR}fatfs)
 
 # Borealis source with dependencies
 file(GLOB BOREALIS_SRC
@@ -42,6 +43,10 @@ file(GLOB BOREALIS_SRC
         ${BOREALIS_DIR}/library/lib/extern/fmt/src/*.cc
         )
 
+file(GLOB FATFS_SRC
+        ${FATFS_DIR}/source/*.c
+)
+
 # Xdelta 3 source
 add_subdirectory(${XDELTA3_DIR}/Sources/Library/)
 
@@ -58,7 +63,7 @@ file(GLOB_RECURSE SOURCES_CXX ${PROJECT_SOURCE_DIR}/source/*.cpp
         ${PROJECT_SOURCE_DIR}/source/*/*.cpp
         ${PROJECT_SOURCE_DIR}/source/*/*/*.cpp)
 
-add_executable(Mara_nx ${SOURCES_ASM} ${SOURCES_C} ${SOURCES_CXX} ${BOREALIS_SRC})
+add_executable(Mara_nx ${SOURCES_ASM} ${SOURCES_C} ${SOURCES_CXX} ${BOREALIS_SRC} ${FATFS_SRC})
 target_compile_definitions(Mara_nx PRIVATE PROJECT_NAME="${PROJECT_NAME}")
 # Next, we need to set the required target properties
 # so CMake can detect the metadata for the application.
@@ -85,6 +90,7 @@ target_include_directories(Mara_nx PUBLIC
         ${NSTOOL_DIR}/deps/libmbedtls/include
         ${NSTOOL_DIR}/deps/libpietendo/include
         ${NSTOOL_DIR}/deps/libtoolchain/include
+        ${FATFS_DIR}/include
         )
 
 # Portlibs and libnx static libraries
