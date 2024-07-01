@@ -80,6 +80,11 @@ target_include_directories(Mara_nx PUBLIC
         ${BOREALIS_DIR}/library/include
         ${XDELTA3_DIR}/Sources/Library/include
         ${NSTOOL_DIR}/include
+        ${NSTOOL_DIR}/deps/libfmt/include
+        ${NSTOOL_DIR}/deps/liblz4/include
+        ${NSTOOL_DIR}/deps/libmbedtls/include
+        ${NSTOOL_DIR}/deps/libpietendo/include
+        ${NSTOOL_DIR}/deps/libtoolchain/include
         )
 
 # Portlibs and libnx static libraries
