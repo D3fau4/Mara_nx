@@ -11,6 +11,9 @@ jobs:
       with:
           submodules: true
 
+    - name: Update submodules
+      run: git submodule update --init --recursive
+      
     - name: Build app
       run: |
         mkdir build
