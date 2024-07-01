@@ -9,10 +9,8 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-          submodules: true
-
-    - uses: textbook/git-checkout-submodule-action@2.1.1
-    
+          submodules: recursive
+          
     - name: Build app
       run: |
         mkdir build
