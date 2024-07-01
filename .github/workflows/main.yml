@@ -11,9 +11,8 @@ jobs:
       with:
           submodules: true
 
-    - name: Update submodules
-      run: git submodule update --init --recursive
-      
+    - uses: textbook/git-checkout-submodule-action@2.1.1
+    
     - name: Build app
       run: |
         mkdir build
