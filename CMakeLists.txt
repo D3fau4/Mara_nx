@@ -79,7 +79,7 @@ target_include_directories(Mara_nx PUBLIC
         ${BOREALIS_DIR}/library/lib/extern/switch-libpulsar/include
         ${BOREALIS_DIR}/library/include
         ${XDELTA3_DIR}/Sources/Library/include
-        ${NSTOOL_DIR}/src
+        ${NSTOOL_DIR}/include
         )
 
 # Portlibs and libnx static libraries
