@@ -28,7 +28,6 @@ namespace Mara::helpers {
                         u64 game_pid = std::stoull(version["game_pid"].get<std::string>(), nullptr, 16);
                         if (game_pid == title.second->GetTitleID()) {
                             program = new ns::Title(game_pid);
-                            brls::Logger::info("Juego encontrado");
                             this->base_path = version["base_path"].get<std::string>();
                             this->patch_files = Mara::fs::getFiles(ROMFS_MOUNT_NAME + version["base_path"].get<std::string>());
                             if(this->patch_files.empty()){

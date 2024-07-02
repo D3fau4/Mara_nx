@@ -1,8 +1,5 @@
 #include <borealis.hpp>
-#include <math.h>
 #include <thread>
-#include <functional>
-#include "Program/Main.hpp"
 
 namespace Mara::ui {
     class InstallerProgessPage : public brls::View {

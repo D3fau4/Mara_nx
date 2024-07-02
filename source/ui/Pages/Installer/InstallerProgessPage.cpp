@@ -3,6 +3,9 @@
 #include "ns/ns.hpp"
 #include "fs/fs.hpp"
 #include "helpers/StringsUtils.hpp"
+#include <math.h>
+#include <functional>
+#include "Program/Main.hpp"
 
 namespace Mara::ui {
 

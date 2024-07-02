@@ -1,6 +1,9 @@
 ﻿#include "ui/Pages/MainActivity.hpp"
 #include "ns/ns.hpp"
-#include "json.hpp"
+#include "hos/savefs.hpp"
+#include "ui/Tabs/AboutTab.hpp"
+#include "ui/Tabs/InstallerTab.hpp"
+#include "EsTikProcess.h"
 
 namespace Mara::ui
 {
@@ -14,6 +17,7 @@ namespace Mara::ui
         for (auto &title : Mara::ns::getAllTitles())
         {
             if(title.second->GetTitleID() == patchData->program->GetTitleID()) {
+                Mara::es::TicketFile tik = Mara::hos::ReadTicket(title.second->GetTitleID());
                 brls::Logger::info("Juego encontrado");
                 this->found  = true;
             }

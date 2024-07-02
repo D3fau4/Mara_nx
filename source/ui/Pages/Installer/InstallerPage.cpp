@@ -1,9 +1,5 @@
-//
-// Created by raul2 on 15/01/2023.
-//
-
 #include "ui/Pages/Installer/InstallerPage.hpp"
-
+#include <math.h>
 
 #ifdef CHECK_SIGNATURE
 #include "es/Security.hpp"
