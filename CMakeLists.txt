@@ -24,6 +24,7 @@ add_compile_definitions(CHECK_SIGNATURE)
 set(LIBS_DIR Libs/)
 set(BOREALIS_DIR ${LIBS_DIR}/borealis/)
 set(XDELTA3_DIR ${LIBS_DIR}xdelta3-nx)
+set(FATFS_DIR ${LIBS_DIR}fatfs)
 
 # Borealis source with dependencies
 file(GLOB BOREALIS_SRC
@@ -43,6 +44,7 @@ file(GLOB BOREALIS_SRC
 
 # Xdelta 3 source
 add_subdirectory(${XDELTA3_DIR}/Sources/Library/)
+add_subdirectory(${FATFS_DIR})
 
 ## Project sources
 include_directories(${PROJECT_SOURCE_DIR}/include/)
@@ -75,6 +77,7 @@ target_include_directories(Mara_nx PUBLIC
         ${BOREALIS_DIR}/library/lib/extern/switch-libpulsar/include
         ${BOREALIS_DIR}/library/include
         ${XDELTA3_DIR}/Sources/Library/include
+        ${FATFS_DIR}/source
         )
 
 # Portlibs and libnx static libraries
@@ -84,6 +87,7 @@ include_directories("${LIBNX}/include")
 target_link_libraries(Mara_nx
         switch::libnx
         xdelta3_nx
+        fatfs
         -L${LIBNX}/lib
         -L${PORTLIBS}/lib
         -lglfw3 -lEGL -lglad -lglapi -ldrm_nouveau -lm -lnx
