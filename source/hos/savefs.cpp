@@ -5,7 +5,7 @@
 
 FsStorage g_FatFsDumpBisStorage;
 
-Mara::es::TicketFile Mara::hos::ReadTicket(u64 app_id){
+Mara::es::TicketFile Mara::hos::ReadTicket(const u64 app_id){
     Mara::es::TicketFile read_tik_file = {};
 
     if (R_SUCCEEDED(fsOpenBisStorage(&g_FatFsDumpBisStorage, FsBisPartitionId_System))){
@@ -32,12 +32,9 @@ Mara::es::TicketFile Mara::hos::ReadTicket(u64 app_id){
                     memcpy(&tik_file.data, tmp_tik_buf + tik_sig_size, sizeof(tik_file.data));
 
                     if(app_id == tik_file.data.rights_id.GetApplicationId()) {
-                        brls::Logger::error("ticket encontrado");
                         read_tik_file = tik_file;
                         break;
                     }
-                    brls::Logger::info("%016X", tik_file.data.rights_id.GetApplicationId());
-                    brls::Logger::info("Original %016X", app_id);
                 }
             }
 
