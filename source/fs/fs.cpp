@@ -74,23 +74,18 @@ namespace Mara::fs {
         std::ifstream is(From, std::ios_base::binary);
         std::ofstream os(To, std::ios_base::binary);
 
-        std::pair<char*,std::ptrdiff_t> buffer;
-        buffer = std::get_temporary_buffer<char>(MaxBufferSize);
+        std::vector<char> buffer(MaxBufferSize);
 
-        //Note that exception() == 0 in both file streams,
-        //so you will not have a memory leak in case of fail.
-        while(is.good() and os)
-        {
-            is.read(buffer.first, buffer.second);
-            os.write(buffer.first, is.gcount());
+        while (is.good() && os) {
+            is.read(buffer.data(), buffer.size());
+            os.write(buffer.data(), is.gcount());
         }
 
-        std::return_temporary_buffer(buffer.first);
-
-        if(os.fail()) return false;
-        if(is.eof()) return true;
+        if (os.fail()) return false;
+        if (is.eof()) return true;
         return false;
     }
+
 
     Result DeleteFile(std::string path)
     {

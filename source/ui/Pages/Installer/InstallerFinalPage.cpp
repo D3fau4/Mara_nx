@@ -9,13 +9,9 @@ namespace Mara::ui {
         this->button->setParent(this);
         this->button->getClickEvent()->subscribe([frame](View* view) {
             if (frame->isLastStage()){
-                for (auto &title : Mara::ns::getAllTitles())
-                {
-                    if(title.second->GetTitleID() == patchData->program->GetTitleID()) {
-                        title.second->Launch();
-                        brls::Application::quit();
-                        break;
-                    }
+                if (patchData->game_found){
+                    patchData->program->Launch();
+                    brls::Application::quit();
                 }
             }
             else

@@ -16,6 +16,8 @@ namespace Mara::helpers {
         std::vector<std::string> patch_files;
         std::string base_path;
 
+        bool game_found;
+
         PatchData();
 
         virtual ~PatchData();

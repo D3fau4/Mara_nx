@@ -8,12 +8,8 @@ namespace Mara::ui {
         if(!pm::isInApplicationMode()){
 
             char path[255];
-            for (auto &title : Mara::ns::getAllTitles())
-            {
-                if(title.second->GetTitleID() == patchData->program->GetTitleID()) {
-                    sprintf(path, "sdmc:/atmosphere/contents/%016lX/", title.second->GetTitleID());
-                    break;
-                }
+            if(patchData->game_found){
+                sprintf(path, "sdmc:/atmosphere/contents/%016lX/", patchData->program->GetTitleID());
             }
 
             brls::ListItem* appletinstall = new brls::ListItem("main/installer/appletinstallwarning/btntitle"_i18n,
@@ -46,13 +42,9 @@ namespace Mara::ui {
                             brls::Dialog* dialog_done = new brls::Dialog("main/installer/appletinstalldone/message"_i18n);
 
                             brls::GenericEvent::Callback yesCallback_done = [dialog_done](brls::View* view){
-                                for (auto &title : Mara::ns::getAllTitles())
-                                {
-                                    if(title.second->GetTitleID() == patchData->program->GetTitleID()) {
-                                        title.second->Launch();
-                                        brls::Application::quit();
-                                        break;
-                                    }
+                                if (patchData->game_found){
+                                    patchData->program->Launch();
+                                    brls::Application::quit();
                                 }
                             };
 
@@ -84,13 +76,9 @@ namespace Mara::ui {
                 std::string nsppath = path + nspgame;
 
                 if(R_SUCCEEDED(Mara::fs::checkFile(nsppath.c_str()))){
-                    for (auto &title : Mara::ns::getAllTitles())
-                    {
-                        if(title.second->GetTitleID() == patchData->program->GetTitleID()) {
-                            title.second->Launch();
-                            brls::Application::quit();
-                            break;
-                        }
+                    if (patchData->game_found){
+                        patchData->program->Launch();
+                        brls::Application::quit();
                     }
                 } else {
                     brls::Application::notify("No has instalado todavía el parcheador, instala el parcheador para poder lanzar el juego desde Mara.");

@@ -23,13 +23,9 @@ namespace Mara::ui {
         Result rc = romfsMountFromCurrentProcess(GAME_MOUNT_NAME);
         if(R_SUCCEEDED(rc)){
             brls::Logger::debug("Romfs del juego montado correctamente");
-            for (auto &title : Mara::ns::getAllTitles())
-            {
-                if(title.second->GetTitleID() == patchData->program->GetTitleID()) {
-                    brls::Logger::debug("Juego instalado: %016X", title.second->GetTitleID());
-                    titlepid = title.second->GetTitleID();
-                    break;
-                }
+            if (patchData->game_found) {
+                brls::Logger::debug("Juego instalado: %016X", patchData->program->GetTitleID());
+                titlepid = patchData->program->GetTitleID();
             }
             // Dar overclock a la CPU para poder parchear mas rapido
             rc = appletSetCpuBoostMode(ApmCpuBoostMode_FastLoad);

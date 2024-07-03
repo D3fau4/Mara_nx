@@ -35,7 +35,7 @@ namespace Mara::ui {
     void StartApp(){
         // Start Main Activity
         auto pMainActivity = new Mara::ui::MainActivity();
-        if(!pMainActivity->found){
+        if(!patchData->game_found){
             brls::Logger::error("Juego no encontrado.");
             brls::Application::crash("main/error/gamenotfound"_i18n);
             return;

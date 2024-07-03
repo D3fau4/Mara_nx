@@ -53,14 +53,12 @@ int main(int argc, char* argv[])
     if(Mara::pm::isInApplicationMode()) {
 
         // Borrar lanzador
-        char path[255];
-        for (auto &title : Mara::ns::getAllTitles())
-        {
-            if(title.second->GetTitleID() == patchData->program->GetTitleID()) {
-                sprintf(path, "sdmc:/atmosphere/contents/%016lX/exefs.nsp", title.second->GetTitleID());
-                Mara::fs::DeleteFile(path);
-            }
+        if (patchData->game_found){
+            char path[255];
+            sprintf(path, "%s:/atmosphere/contents/%016lX/exefs.nsp", SDCARD_MOUNT_NAME, patchData->program->GetTitleID());
+            Mara::fs::DeleteFile(path);
         }
+
         // Establece que no se pueda salir de la app
         brls::Application::setGlobalQuit(false);
         // Nuevo splash screen
