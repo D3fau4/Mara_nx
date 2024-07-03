@@ -17,6 +17,7 @@ namespace Mara::helpers {
 
     void PatchData::initializeConstants() {
         nlohmann::json jsonData;
+        this->game_found = false;
         std::ifstream inputFile(VERSIONS_FILE);
         if (inputFile.is_open()) {
             inputFile >> jsonData;
@@ -31,6 +32,7 @@ namespace Mara::helpers {
                             brls::Logger::info("Juego encontrado");
                             this->base_path = version["base_path"].get<std::string>();
                             this->patch_files = Mara::fs::getFiles(ROMFS_MOUNT_NAME + version["base_path"].get<std::string>());
+                            this->game_found = true;
                             if(this->patch_files.empty()){
                                 brls::Logger::error("No se han encontrado parches xdelta en la carpeta %s%s", ROMFS_MOUNT_NAME, version["base_path"].get<std::string>().c_str());
                             }
