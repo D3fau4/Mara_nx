@@ -10,6 +10,8 @@
 #include "pm/pm.hpp"
 #include "ns/ns.hpp"
 
+#include "hos/savefs.hpp"
+
 Mara::helpers::PatchData* patchData;
 
 void initServices(){
@@ -49,6 +51,9 @@ int main(int argc, char* argv[])
     patchData = new Mara::helpers::PatchData();
 
     brls::View* splash;
+
+    Mara::hos::ReadCert("Root");
+    //Mara::hos::ReadTicket(0);
 
     if(Mara::pm::isInApplicationMode()) {
 
