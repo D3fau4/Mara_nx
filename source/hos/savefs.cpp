@@ -39,13 +39,13 @@ Mara::es::TicketFile getTicket(const u64 app_id, FIL &save) {
 Mara::es::Cert readCertificate(const char* expected_issuer, FIL &file) {
     Mara::es::Cert read_cert = {};
     u32 tmp_size = 0;
-    u8 tmp_cert_buf[0x400];  // Tamaño suficiente para un bloque de certificado
+    u8 tmp_cert_buf[0x400];
 
     f_rewind(&file);
 
     while (true) {
         const auto fr = f_read(&file, &tmp_cert_buf, sizeof(tmp_cert_buf), &tmp_size);
-        //brls::Logger::info("f_read result: %d, tmp_size: %u", fr, tmp_size);
+
         if (fr != FR_OK) {
             brls::Logger::error("Read error: %d", fr);
             break;
@@ -58,15 +58,23 @@ Mara::es::Cert readCertificate(const char* expected_issuer, FIL &file) {
 
         const auto cert_sig = *reinterpret_cast<Mara::es::SignatureBlock*>(tmp_cert_buf);
         if (IsValidCertificateSignature(cert_sig)) {
-            Mara::es::Cert cert = *reinterpret_cast<Mara::es::Cert*>(tmp_cert_buf);
-            read_cert = cert;
-            brls::Logger::info("Certsize: %u", sizeof(cert.signature_block) + sizeof(cert.cert_header));
+            Mara::es::Cert cert = {.signature_block = cert_sig};
+
+            const auto sig_nature_block_size = Mara::es::GetCertificateSignatureSize(cert.signature_block) +
+                                               sizeof(Mara::es::SignatureBlock::sig_type) +
+                                               sizeof(Mara::es::SignatureBlock::issuer);
+
+            memcpy(&cert.cert_header, tmp_cert_buf + sig_nature_block_size, sizeof(Mara::es::CertHeader));
+            memcpy(&cert.public_key_block, tmp_cert_buf + sig_nature_block_size + sizeof(Mara::es::CertHeader),
+                   Mara::es::GetCertificatePublicKeyBlockSize(cert.cert_header));
+
+            if (strcmp(expected_issuer, cert.cert_header.subject) != 0) {
+                read_cert = cert;
+                break;
+            }
         }
     }
 
-    auto f = fopen("sdmc:/dump_final.cert", "w");
-    fwrite(&read_cert, sizeof(u8), sizeof(tmp_cert_buf), f);
-    fclose(f);
     return read_cert;
 }
 
@@ -107,7 +115,7 @@ void Mara::hos::ReadCert(const char* issuer){
         if(f_mount(&fs, SYSTEM_MOUNT_NAME, 1) == FR_OK && f_open(&save, CERT_SAVE_FILE, FA_READ | FA_OPEN_EXISTING) == FR_OK){
             Mara::es::Cert cert = readCertificate(issuer, save);
 
-            if(cert.cert_header.date == 0) {
+            if (!Mara::es::IsValidCertificateSignature(cert.signature_block)) {
                 brls::Logger::error("algo va mal");
             }
 

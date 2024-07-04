@@ -52,7 +52,7 @@ int main(int argc, char* argv[])
 
     brls::View* splash;
 
-    Mara::hos::ReadCert("Root");
+    Mara::hos::ReadCert("XS00000020");
     //Mara::hos::ReadTicket(0);
 
     if(Mara::pm::isInApplicationMode()) {
