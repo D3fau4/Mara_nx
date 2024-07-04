@@ -6,19 +6,19 @@
 
 namespace Mara::es {
     enum SigType : u32 {
-        SigType_Rsa4096Sha1   = 65536,
-        SigType_Rsa2048Sha1   = 65537,
-        SigType_Ecc480Sha1    = 65538,
-        SigType_Rsa4096Sha256 = 65539,
-        SigType_Rsa2048Sha256 = 65540,
-        SigType_Ecc480Sha256  = 65541,
-        SigType_Hmac160Sha1   = 65542
+        SigType_Rsa4096Sha1 = 0x0000100,
+        SigType_Rsa2048Sha1 = 0x1000100,
+        SigType_Ecc480Sha1= 0x2000100,
+        SigType_Rsa4096Sha256 = 0x3000100,
+        SigType_Rsa2048Sha256 = 0x4000100,
+        SigType_Ecc480Sha256 = 0x5000100,
+        SigType_Hmac160Sha1= 0x6000100,
     };
 
     enum PubKeyType : u32 {
         PubKeyType_Rsa4096 = 0,
-        PubKeyType_Rsa2048 = 1,
-        PubKeyType_Ecc480  = 2
+        PubKeyType_Rsa2048 = 0x1000000,
+        PubKeyType_Ecc480  = 0x2000000
     };
 
     struct SignatureBlock {
@@ -75,9 +75,7 @@ namespace Mara::es {
         PublicKeyBlock public_key_block;
     };
 
-    inline bool IsValidCertificateSignature(const SignatureBlock& sig_block) {
-        return (sig_block.sig_type >= SigType_Rsa4096Sha1 ) && (sig_block.sig_type <= SigType_Hmac160Sha1);
-    }
+
 
     inline size_t GetCertificateSignatureSize(const SignatureBlock& sig_block) {
         switch (sig_block.sig_type) {
@@ -95,5 +93,9 @@ namespace Mara::es {
             default:
                 return 0;
         }
+    }
+
+    inline bool IsValidCertificateSignature(const SignatureBlock& sig_block) {
+        return GetCertificateSignatureSize(sig_block) != 0;
     }
 }
