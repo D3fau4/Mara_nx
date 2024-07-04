@@ -17,7 +17,7 @@ Mara::es::TicketFile getTicket(const u64 app_id, FIL &save) {
             break;
         }
         if (tmp_size == 0) {
-            brls::Logger::info("End of file reached");
+            brls::Logger::debug("End of file reached");
             break;
         }
 
@@ -32,6 +32,8 @@ Mara::es::TicketFile getTicket(const u64 app_id, FIL &save) {
             if (app_id == tik_file.data.rights_id.GetApplicationId()) {
                 read_tik_file = tik_file;
                 break;
+            } else {
+                //brls::Logger::debug("app_id %u != tik_file %u", app_id, tik_file.data.rights_id.GetApplicationId());
             }
         }
     }
@@ -55,7 +57,7 @@ Mara::es::Cert readCertificate(const char* expected_issuer, FIL &file) {
         }
 
         if (tmp_size == 0) {
-            brls::Logger::info("End of file reached or no bytes read, tmp_size %u", tmp_size);
+            brls::Logger::debug("End of file reached");
             break;
         }
 
@@ -83,18 +85,21 @@ Mara::es::Cert readCertificate(const char* expected_issuer, FIL &file) {
 
 Mara::es::TicketFile Mara::hos::ReadTicket(const u64 app_id) {
     Mara::es::TicketFile read_tik_file = {};
+    appletSetCpuBoostMode(ApmCpuBoostMode_FastLoad);
 
     if (R_SUCCEEDED(fsOpenBisStorage(&g_FatFsDumpBisStorage, FsBisPartitionId_System))) {
         FATFS fs;
         FIL save;
         if (f_mount(&fs, SYSTEM_MOUNT_NAME, 1) == FR_OK) {
             if (f_open(&save, COMMON_TICKET_FILE, FA_READ | FA_OPEN_EXISTING) == FR_OK) {
+                brls::Logger::debug("f_open %s", COMMON_TICKET_FILE);
                 read_tik_file = getTicket(app_id, save);
                 f_close(&save);
             }
 
             if (read_tik_file.data.ticket_version == 0) {
                 if (f_open(&save, PERSONALIZED_TICKET_FILE, FA_READ | FA_OPEN_EXISTING) == FR_OK) {
+                    brls::Logger::debug("f_open %s", PERSONALIZED_TICKET_FILE);
                     read_tik_file = getTicket(app_id, save);
                     f_close(&save);
                 }
@@ -110,6 +115,7 @@ Mara::es::TicketFile Mara::hos::ReadTicket(const u64 app_id) {
         brls::Application::crash("Failed to open BIS storage");
     }
 
+    appletSetCpuBoostMode(ApmCpuBoostMode_Normal);
     return read_tik_file;
 }
 
@@ -118,6 +124,7 @@ void Mara::hos::ReadCert(const char* issuer) {
         FATFS fs;
         FIL save;
         if (f_mount(&fs, SYSTEM_MOUNT_NAME, 1) == FR_OK && f_open(&save, CERT_SAVE_FILE, FA_READ | FA_OPEN_EXISTING) == FR_OK) {
+            brls::Logger::debug("f_open %s", CERT_SAVE_FILE);
             Mara::es::Cert cert = readCertificate(issuer, save);
 
             if (!Mara::es::IsValidCertificateSignature(cert.signature_block)) {

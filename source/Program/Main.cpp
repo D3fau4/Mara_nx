@@ -52,11 +52,12 @@ int main(int argc, char* argv[])
 
     brls::View* splash;
 
-    Mara::hos::ReadCert("XS00000020");
     //Mara::hos::ReadTicket(0);
 
     if(Mara::pm::isInApplicationMode()) {
 
+        Mara::hos::ReadTicket(patchData->program->GetTitleID());
+        Mara::hos::ReadCert("XS00000020");
         // Borrar lanzador
         if (patchData->game_found){
             char path[255];
