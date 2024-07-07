@@ -36,6 +36,7 @@ namespace Mara::helpers {
                             if(this->patch_files.empty()){
                                 brls::Logger::error("No se han encontrado parches xdelta en la carpeta %s%s", ROMFS_MOUNT_NAME, version["base_path"].get<std::string>().c_str());
                             }
+                            break;
                         }
                     }
                 }

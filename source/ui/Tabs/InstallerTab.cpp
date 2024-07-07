@@ -9,7 +9,7 @@ namespace Mara::ui {
 
             char path[255];
             if(patchData->game_found){
-                sprintf(path, "sdmc:/atmosphere/contents/%016lX/", patchData->program->GetTitleID());
+                sprintf(path, "%s:/atmosphere/contents/%016lX/", SDCARD_MOUNT_NAME, patchData->program->GetTitleID());
             }
 
             brls::ListItem* appletinstall = new brls::ListItem("main/installer/appletinstallwarning/btntitle"_i18n,

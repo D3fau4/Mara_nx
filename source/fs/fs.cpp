@@ -1,4 +1,12 @@
 #include <regex>
+#include <dirent.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <filesystem>
+#include <fstream>
+#include <string.h>
+#include <sys/stat.h>
+#include <unistd.h>
 #include "fs/fs.hpp"
 #include "Program/Main.hpp"
 
