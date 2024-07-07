@@ -119,13 +119,14 @@ Mara::es::TicketFile Mara::hos::ReadTicket(const u64 app_id) {
     return read_tik_file;
 }
 
-void Mara::hos::ReadCert(const char* issuer) {
+Mara::es::Cert Mara::hos::ReadCert(const char* issuer) {
+    Mara::es::Cert cert = {};
     if (R_SUCCEEDED(fsOpenBisStorage(&g_FatFsDumpBisStorage, FsBisPartitionId_System))) {
         FATFS fs;
         FIL save;
         if (f_mount(&fs, SYSTEM_MOUNT_NAME, 1) == FR_OK && f_open(&save, CERT_SAVE_FILE, FA_READ | FA_OPEN_EXISTING) == FR_OK) {
             brls::Logger::debug("f_open %s", CERT_SAVE_FILE);
-            Mara::es::Cert cert = readCertificate(issuer, save);
+             cert = readCertificate(issuer, save);
 
             if (!Mara::es::IsValidCertificateSignature(cert.signature_block)) {
                 brls::Logger::error("Invalid certificate signature");
@@ -141,4 +142,6 @@ void Mara::hos::ReadCert(const char* issuer) {
     } else {
         brls::Application::crash("Failed to open BIS storage");
     }
+
+    return cert;
 }

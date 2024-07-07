@@ -11,6 +11,7 @@
 #include "ns/ns.hpp"
 
 #include "hos/savefs.hpp"
+#include "hos/Crypto.hpp"
 
 Mara::helpers::PatchData* patchData;
 
@@ -56,8 +57,10 @@ int main(int argc, char* argv[])
 
     if(Mara::pm::isInApplicationMode()) {
 
-        Mara::hos::ReadTicket(patchData->program->GetTitleID());
-        Mara::hos::ReadCert("XS00000020");
+        auto tik = Mara::hos::ReadTicket(patchData->program->GetTitleID());
+        auto cert = Mara::hos::ReadCert("XS00000020");
+        Mara::hos::Crypto::CheckTicket(tik, cert);
+
         // Borrar lanzador
         if (patchData->game_found){
             char path[255];

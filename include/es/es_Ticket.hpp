@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../types.h"
+#include <switch.h>
 
 namespace Mara::es {
     enum class TicketType {
