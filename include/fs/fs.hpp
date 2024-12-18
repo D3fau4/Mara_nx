@@ -1,14 +1,6 @@
 #pragma once
-
-#include <dirent.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include <switch.h>
-#include <fstream>
-#include <sys/stat.h>
-#include <unistd.h>
-#include <filesystem>
+
 #include <vector>
 #include <borealis.hpp>
 

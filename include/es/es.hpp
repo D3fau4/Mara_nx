@@ -23,12 +23,6 @@ namespace Mara {
         bool isRightIdPirated(u64 right_id);
         bool checkGameCardSig(u8 data[]);
 
-        enum SecurityLevel {
-            SecurityLevel_None,
-            SecurityLevel_Partial,
-            SecurityLevel_Full
-        };
-
     private:
         Service g_EsService;
 
