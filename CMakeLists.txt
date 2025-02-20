@@ -15,6 +15,8 @@ include(SwitchTools)
 find_package(LIBNX REQUIRED)
 add_compile_definitions(HAVE_LIBNX)
 
+add_subdirectory(Libs/hbl)
+
 ## Borealis resource location
 add_compile_definitions(BOREALIS_RESOURCES="romfs:/")
 
@@ -91,3 +93,5 @@ target_link_libraries(Mara_nx
 
 # NX executable target
 add_nro_target(Mara_nx)
+
+add_dependencies(Mara_nx_nro hbl_nsp)
