@@ -4,7 +4,7 @@
 #include <switch.h>
 
 namespace {
-    constexpr size_t HeapSize = 64_KB;
+    constexpr size_t HeapSize = 64 * 1024;
     u8 g_Heap[HeapSize] = {};
 }
 
