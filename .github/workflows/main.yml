@@ -16,8 +16,9 @@ jobs:
         mkdir build
         cmake -G "Unix Makefiles" --toolchain=DevkitA64Libnx.cmake -S . -B build
         cmake --build build
-    - name: Upload a Build Artifact
+    - name: Upload Build Artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: build
-        path: build/Mara_nx.nro
+        path: |
+          build/*.nro
+          build/**/*.nsp

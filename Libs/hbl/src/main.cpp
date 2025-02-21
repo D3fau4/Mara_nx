@@ -51,6 +51,8 @@ int main() {
         printf("fsdevMountSdmc() failed: 0x%x\n", rc);
     }
 
+    printf("Press + to exit\n");
+
     while(appletMainLoop()) {
         padUpdate(&pad);
 
