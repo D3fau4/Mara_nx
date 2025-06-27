@@ -1,5 +1,5 @@
 #include "ui/Pages/Installer/InstallerProgessPage.hpp"
-#include "Helper.h"
+#include "xdelta3.h"
 #include "ns/ns.hpp"
 #include "fs/fs.hpp"
 #include "helpers/StringsUtils.hpp"
