@@ -1,5 +1,28 @@
 {
-    "title": "Mara",
-    "creditstab": "Home"
+    "title": ".hack//G.U. Last Recode Patcher",
+    "creditstab": "Créditos",
+    "error": {
+        "gamenotfound": "Juego no encontrado."
+    },
+    "translation": {
+        "title": "Versión del parche: v1.0.0",
+        "subtitle": "",
+        "translatedby": "Este proyecto ha sido posible gracias a:"
+    },
+    "installer": {
+        "title": "Instalador",
+        "appletinstallwarning": {
+            "btntitle": "Instalar el parcheador",
+            "btnsubtitle": "Instala el parcheador",
+            "message": "Se va a proceder a instalar el parcheador.",
+            "yes": "Continuar",
+            "no": "Cancelar"
+        },
+        "appletinstalldone": {
+            "message": "Se ha instalado correctamente el parcheador. La próxima vez que abras el juego te arrancara el instalador.\n¿Quieres lanzar ahora el juego?",
+            "yes": "Lanzar juego",
+            "no": "Continuar"
+        }
+    }
 }
 
