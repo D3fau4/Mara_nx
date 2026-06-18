@@ -76,7 +76,7 @@ Result fsOpenGameCardDetectionEventNotifier(FsEventNotifier *out);
 
 /// IDeviceOperator.
 Result fsDeviceOperatorUpdatePartitionInfo(FsDeviceOperator *d, const FsGameCardHandle *handle, u32 *out_title_version, u64 *out_title_id);
-Result fsDeviceOperatorGetGameCardDeviceCertificate(FsDeviceOperator *d, const FsGameCardHandle *handle, FsGameCardCertificate *out);
+/* fsDeviceOperatorGetGameCardDeviceCertificate is now provided by libnx. */
 
 #ifdef __cplusplus
 }
